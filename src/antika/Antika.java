@@ -40,21 +40,46 @@ public class Antika {
             System.out.println("::::::::::Avis::::::::::::::");   
             */
             
-          AvisService a = new AvisService();
-      Avis as = new Avis("magnifique",5);
+       //  AvisService a = new AvisService();
+   // Avis as = new Avis("magnifique",5);
       
       //  
-        Avis as2=new Avis("bonne",4);
-      //  a.ajouterAvis(as2);
+    //   Avis as2=new Avis("bonne",4);
+     //  a.ajouterAvis(as2);
        // a.supprimerAvis(2);
        
        //  a.modifierAvis(3, as2);
          
        //a.afficherAvis().forEach(System.out::println);
        
-       UserService ps = new UserService();
-         a.FiltrerParId_avis(5).forEach(System.out::println);
-         ps.FiltrerParNom("wiem2").forEach(System.out::println);
+      // UserService ps = new UserService();
+         //a.FiltrerParId_avis(5).forEach(System.out::println);
+        // ps.FiltrerParNom("wiem2").forEach(System.out::println);
+      
+     
+    
+      
+      //  
+       // Avis as2=new Avis("bonne",4);
+       //a.ajouterAvis(as2);
+               //UserService ps = new UserService();
+       // User p = new User("Wiem2", "Ben Araar", "wiem.benaraar@esprit.tn", "90180310","La Sokra",Type.ADMINISTRATEUR);
+       // User p1 = new User("Wided", "Ben Araar", "wided.benaraar@esprit.tn", "24173007","La Sokra",Type.ARTISTE);
+        //User p2 = new User("Hedi", "BL", "hedi.bl@esprit.tn", "24000555","Manouba",Type.CLIENT);
+       
+       
+       //ps.ajouterUser(p2);
+       //ps.afficherUser().forEach(System.out::println);
+      // ps.supprimerUser(33);
+      // ps.afficherUser().forEach(System.out::println);
+        //ps.afficherUser().forEach(System.out::println);
+  // ps.modifierUser(1,p1);
+ //ps.afficherUser().forEach(System.out::println);
+ //ps.FiltrerParNom("wiem2").forEach(System.out::println);
+ //ps.afficherUser().forEach(System.out::println);
+ //ps.afficherUser().forEach(System.out::println);
+      
+ 
       
     }
 }

@@ -43,6 +43,8 @@ public class User {
        
     }
 
+   
+
     public int getId_user() {
         return id_user;
     }
