@@ -2,24 +2,32 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FXMLController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #46211d;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FXMLController">
    <children>
+      <ImageView fitHeight="470.0" fitWidth="714.0" opacity="0.36" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@image/b.jpg" />
+         </image>
+      </ImageView>
       
-      <Button layoutX="117.0" layoutY="262.0" mnemonicParsing="false" onAction="#btn_connexion" prefHeight="30.0" prefWidth="106.0" text="Connexion" textAlignment="CENTER" textFill="#481e1e" textOverrun="CENTER_WORD_ELLIPSIS" />
-      <Button layoutX="397.0" layoutY="262.0" mnemonicParsing="false" onAction="#btn_créermoncompte" prefHeight="30.0" prefWidth="135.0" text="Créer mon compte" />
-      <TextField fx:id="tf_nom" layoutX="59.0" layoutY="81.0" prefHeight="38.0" prefWidth="106.0" promptText="Nom" />
-      <TextField fx:id="tf_motdepasse" layoutX="56.0" layoutY="153.0" prefHeight="27.0" prefWidth="499.0" promptText="Mot de passe" />
-      <Hyperlink layoutX="450.0" layoutY="345.0" onAction="#link_motdepasseoublié" text="Mot de passe oublié ?" textFill="#943434" />
-      <TextField fx:id="tf_prenom" layoutX="345.0" layoutY="88.0" promptText="Prenom" />
-      <Text fill="#913131" layoutX="257.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Antika">
+      <Button layoutX="192.0" layoutY="252.0" mnemonicParsing="false" onAction="#btn_connexion" prefHeight="30.0" prefWidth="106.0" style="-fx-background-color: #d1a88e;" text="Connexion" textAlignment="CENTER" textFill="#481e1e" textOverrun="CENTER_WORD_ELLIPSIS" />
+      <Button layoutX="399.0" layoutY="252.0" mnemonicParsing="false" onAction="#btn_créeruncompte" prefHeight="30.0" prefWidth="151.0" style="-fx-background-color: #d1a88e;" text="Créer un compte" />
+      <TextField fx:id="tf_nom" layoutX="188.0" layoutY="128.0" prefHeight="26.0" prefWidth="151.0" promptText="Nom" />
+      <Hyperlink layoutX="400.0" layoutY="207.0" onAction="#link_motdepasseoublié" text="Mot de passe oublié ?" textFill="#46211d" />
+      <TextField fx:id="tf_prenom" layoutX="388.0" layoutY="128.0" prefHeight="26.0" prefWidth="167.0" promptText="Prenom" />
+      <Text fill="#46211d" layoutX="297.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Antika">
          <font>
-            <Font size="24.0" />
+            <Font name="Lucida Bright Italic" size="39.0" />
          </font>
       </Text>
+      <PasswordField fx:id="tf_motdepasse" layoutX="188.0" layoutY="188.0" promptText="Mot de passe" />
    </children>
 </AnchorPane>

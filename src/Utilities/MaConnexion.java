@@ -21,14 +21,15 @@ public class MaConnexion {
     public String url="jdbc:mysql://localhost:3306/antika";
     public String login="root";
     public String pwd="";
-    Connection cnx;
+    public Connection cnx;
 
     public static MaConnexion instance;
     
-    public MaConnexion(){
+    public  MaConnexion(){
         try {
            cnx = DriverManager.getConnection(url ,login ,pwd);
            System.out.println("Connexion etablie avec succes!");
+           
         } catch (SQLException ex) {
            System.err.print(ex.getMessage());
         }

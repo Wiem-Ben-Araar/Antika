@@ -10,29 +10,22 @@ package Models;
  * @author wiemb
  */
 public class Avis {
-   private int id_avis;
+private int id_avis;
     private String commentaire;
       private int note;
-      private User user;
 
     public Avis() {
     }
 
-    public Avis(String commentaire, int note, User user) {
+    public Avis(String commentaire, int note) {
         this.commentaire = commentaire;
         this.note = note;
-        this.user = user;
     }
 
-    public Avis(int id_avis, String commentaire, int note,User user) {
+    public Avis(int id_avis, String commentaire, int note) {
         this.id_avis = id_avis;
         this.commentaire = commentaire;
         this.note = note;
-        this.user = user;
-    }
-
-    public Avis(String magnifique, int i) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public int getId_avis() {
@@ -47,11 +40,6 @@ public class Avis {
         return note;
     }
 
-    public User getUser() {
-        return user;
-    }
-    
-
     public void setId_avis(int id_avis) {
         this.id_avis = id_avis;
     }
@@ -64,14 +52,12 @@ public class Avis {
         this.note = note;
     }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
-
     @Override
     public String toString() {
-        return "Avis{" + "id_avis=" + id_avis + ", commentaire=" + commentaire + ", note=" + note + ", user=" + user + '}';
+        return "Avis{" + "id_avis=" + id_avis + ", commentaire=" + commentaire + ", note=" + note + '}';
     }
+
+
 
     
 

@@ -40,8 +40,8 @@ public class Antika {
             System.out.println("::::::::::Avis::::::::::::::");   
             */
             
-       //  AvisService a = new AvisService();
-   // Avis as = new Avis("magnifique",5);
+        AvisService a = new AvisService();
+    Avis as = new Avis("magnifique",5);
       
       //  
     //   Avis as2=new Avis("bonne",4);
@@ -50,7 +50,7 @@ public class Antika {
        
        //  a.modifierAvis(3, as2);
          
-       //a.afficherAvis().forEach(System.out::println);
+       a.afficherAvis().forEach(System.out::println);
        
       // UserService ps = new UserService();
          //a.FiltrerParId_avis(5).forEach(System.out::println);
@@ -60,8 +60,8 @@ public class Antika {
     
       
       //  
-       // Avis as2=new Avis("bonne",4);
-       //a.ajouterAvis(as2);
+       Avis as2=new Avis("bonne",4);
+       a.ajouterAvis(as2);
                //UserService ps = new UserService();
        // User p = new User("Wiem2", "Ben Araar", "wiem.benaraar@esprit.tn", "90180310","La Sokra",Type.ADMINISTRATEUR);
        // User p1 = new User("Wided", "Ben Araar", "wided.benaraar@esprit.tn", "24173007","La Sokra",Type.ARTISTE);

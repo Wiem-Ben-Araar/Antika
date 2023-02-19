@@ -10,5 +10,5 @@ package Utilities;
  * @author wiemb
  */
 public enum Type {
-    ARTISTE,CLIENT,ADMINISTRATEUR
+    ARTISTE,CLIENT,ADMINISTRATEUR,EXPERT
 }

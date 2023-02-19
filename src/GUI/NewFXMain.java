@@ -24,7 +24,7 @@ public class NewFXMain extends Application {
     
     @Override
     public void start(Stage primaryStage) throws IOException {
-     /*
+     
         try {
             Parent root=FXMLLoader.load(getClass().getResource("FXML.fxml"));
            
@@ -36,16 +36,16 @@ public class NewFXMain extends Application {
         } catch (IOException ex) {
             Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-       */ 
+        /*
+       
+      
          Parent root2=FXMLLoader.load(getClass().getResource("FXMLAvis.fxml"));
          Scene scene = new Scene(root2);
           primaryStage.setTitle("Antika");
             primaryStage.setScene(scene);
             primaryStage.show();
-            
+      */     
     }
-
     /**
      * @param args the command line arguments
      */

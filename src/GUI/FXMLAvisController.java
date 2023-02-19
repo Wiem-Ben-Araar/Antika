@@ -5,8 +5,12 @@
  */
 package GUI;
 
+import Utilities.MaConnexion;
 import java.net.URL;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
@@ -17,7 +21,7 @@ import javafx.scene.control.TextField;
  * @author wiemb
  */
 public class FXMLAvisController implements Initializable {
-
+  PreparedStatement pst;
     @FXML
     private TextField tf_commentaire;
     @FXML
@@ -25,10 +29,25 @@ public class FXMLAvisController implements Initializable {
 
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    @FXML
+    private void btn_envoyer(ActionEvent event) throws SQLException {  //Mezel mayekhdemch l bouton envoyer
+        MaConnexion cnx=new MaConnexion();
+      String requete="insert into avis (commentaire,note)values(?,?)";
+       
+      pst=cnx.cnx.prepareStatement(requete);
+        pst.setString(1,tf_commentaire.getText());
+        pst.setString(2,tf_note.getText());
+        
+            
+        pst.execute();  
+    }
     
 }
