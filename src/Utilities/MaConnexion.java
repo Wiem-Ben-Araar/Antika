@@ -11,26 +11,25 @@ package Utilities;
  */
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
-
-
 
 public class MaConnexion {
-    public String url="jdbc:mysql://localhost:3306/antika";
-    public String login="root";
-    public String pwd="";
+    public String url = "jdbc:mysql://localhost:3306/antika";
+    public String login = "root";
+    public String pwd = "";
     Connection cnx;
 
     public static MaConnexion instance;
     
-    public MaConnexion(){
+    public MaConnexion() {
         try {
-           cnx = DriverManager.getConnection(url ,login ,pwd);
-           System.out.println("Connexion etablie avec succes!");
+            Class.forName("com.mysql.jdbc.Driver");
+            cnx = DriverManager.getConnection(url ,login ,pwd);
+            System.out.println("Connexion etablie avec succes!");
         } catch (SQLException ex) {
            System.err.print(ex.getMessage());
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
     }
     
@@ -43,10 +42,6 @@ public class MaConnexion {
         instance = new MaConnexion();
         }
         return instance;
-    }
-
-    public void setCnx(Connection cnx) {
-        this.cnx = cnx;
     }
 
 }

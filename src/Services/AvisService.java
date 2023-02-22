@@ -26,9 +26,10 @@ import java.util.logging.Logger;
  */
 public class AvisService implements AvisInterface{
 Connection cnx = MaConnexion.getInstance().getCnx();
+ UserService us = new UserService();
     @Override
     public void ajouterAvis(Avis avis) {
-        String req = "INSERT INTO `avis`(`commentaire`,`note`) VALUES ('"+avis.getCommentaire()+"','"+avis.getNote()+"')";
+        String req = "INSERT INTO `avis`(`commentaire`,`note`) VALUES ('"+avis.getCommentaire()+"','"+avis.getNote()+"',"+avis.getUser().getId_user()+")";
         try {
             Statement st = cnx.createStatement();
             st.executeUpdate(req);
@@ -45,6 +46,7 @@ Connection cnx = MaConnexion.getInstance().getCnx();
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setString(1, avis.getCommentaire());
             ps.setInt(2, avis.getNote());
+           
          
            
          
@@ -80,7 +82,7 @@ Connection cnx = MaConnexion.getInstance().getCnx();
              avis.setId_avis(rs.getInt(1));
                 avis.setCommentaire(rs.getString("Commentaire"));
                 avis.setNote(rs.getInt("Note"));
-      
+      us.afficherUserbyID(rs.getInt("user"));
              
                 
                 aviss.add(avis);
@@ -102,6 +104,7 @@ Connection cnx = MaConnexion.getInstance().getCnx();
                 avis.setId_avis(rs.getInt(1));
                 avis.setCommentaire(rs.getString("Commentaire"));
                 avis.setNote(rs.getInt("Note"));
+                us.afficherUserbyID(rs.getInt("user"));
                
                 
             }
@@ -123,7 +126,7 @@ Connection cnx = MaConnexion.getInstance().getCnx();
                 a1.setId_avis(rs.getInt(1));
                 a1.setCommentaire(rs.getString("commentaire"));
                 a1.setNote(rs.getInt("note"));
-             
+             us.afficherUserbyID(rs.getInt("user"));
               
               
                 //

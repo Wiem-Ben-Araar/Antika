@@ -28,7 +28,7 @@ public class UserService implements UserInterface {
 
     @Override
     public void ajouterUser(User p) {
-       String req = "INSERT INTO `user`(`nom`, `prenom`, `email` ,`telephone`,`adresse`,`type`) VALUES ('"+p.getNom()+"','"+p.getPrenom()+"','"+p.getEmail()+"','"+p.getTelephone()+"','"+p.getAdresse()+"','"+p.getType()+"')";
+       String req = "INSERT INTO `user`(`nom`, `prenom`, `email` ,`telephone`,`adresse`,`type`, `mot_de_passe`) VALUES ('"+p.getNom()+"','"+p.getPrenom()+"','"+p.getEmail()+"','"+p.getTelephone()+"','"+p.getAdresse()+"','"+p.getType()+"','"+p.getMot_de_passe()+"')";
         try {
             Statement st = cnx.createStatement();
             st.executeUpdate(req);
@@ -40,7 +40,7 @@ public class UserService implements UserInterface {
 
     @Override
     public void ajouterUser2(User p) {
-      String req = "INSERT INTO `user`(`nom`, `prenom`, `email` ,`telephone`,`adresse`,`type`) VALUES (?,?,?,?,?,?,?)";
+      String req = "INSERT INTO `user`(`nom`, `prenom`, `email` ,`telephone`,`adresse`,`type`,`mot_de_passe`) VALUES (?,?,?,?,?,?,?,?)";
       
     try {
             PreparedStatement ps = cnx.prepareStatement(req);
@@ -50,7 +50,8 @@ public class UserService implements UserInterface {
             ps.setString(3, p.getEmail());
             ps.setString(4, p.getTelephone());
             ps.setString(5, p.getAdresse());
-             ps.setString(6, p.getType().toString());
+            ps.setString(6, p.getType().toString());
+            ps.setString(7, p.getMot_de_passe());
             
             ps.executeUpdate();
             System.out.println("Personne ajouté avec success via prepared Statement!!!");
@@ -63,7 +64,7 @@ public class UserService implements UserInterface {
     @Override
     public void modifierUser(int id, User p) {
        try{
-             String req ="UPDATE `user` SET `nom`=?,`prenom`=?,`email`=?,`telephone`=?,`adresse`=?,`type`=? WHERE id_user='"+id+"'";
+             String req ="UPDATE `user` SET `nom`=?,`prenom`=?,`email`=?,`telephone`=?,`adresse`=?,`type`=?,`mot_de_passe`=? WHERE id_user='"+id+"'";
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setString(1, p.getNom());
             ps.setString(2, p.getPrenom());
@@ -71,6 +72,7 @@ public class UserService implements UserInterface {
             ps.setString(4, p.getTelephone());
             ps.setString(5, p.getAdresse());
             ps.setString(6, p.getType().toString());
+            ps.setString(7, p.getMot_de_passe());
          
             ps.executeUpdate();
             System.out.println("Utlisateur est modifié");
@@ -110,6 +112,7 @@ public class UserService implements UserInterface {
                 p.setTelephone(rs.getString("Telephone"));
                  p.setAdresse(rs.getString("Adresse"));
                  p.setType(Type.valueOf(rs.getString("Type")));
+                 p.setMot_de_passe(rs.getString("Mot_de_passe"));
                 
                 personnes.add(p);
             }
@@ -135,6 +138,7 @@ public class UserService implements UserInterface {
                 p.setTelephone(rs.getString("Telephone"));
                 p.setAdresse(rs.getString("Adresse"));
                 p.setType(Type.valueOf(rs.getString("Type")));
+                p.setMot_de_passe(rs.getString("Mot_de_passe"));
                 
             }
         } catch (SQLException ex) {
@@ -159,6 +163,7 @@ public class UserService implements UserInterface {
                 p.setTelephone(rs.getString("Telephone"));
                 p.setAdresse(rs.getString("Adresse"));
                 p.setType(Type.valueOf(rs.getString("Type")));
+                p.setMot_de_passe(rs.getString("Mot de passe"));
               
                 //
                 personnes.add(p);
