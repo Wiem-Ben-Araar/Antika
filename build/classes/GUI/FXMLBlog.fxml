@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="338.0" prefWidth="602.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FXMLBlogController">
+   <children>
+      <ImageView fitHeight="347.0" fitWidth="609.0" layoutX="-5.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@image/1.jbeg.jpg" />
+         </image>
+      </ImageView>
+      <TextField fx:id="tf_titre" layoutX="143.0" layoutY="59.0" promptText="ecrire titre" />
+      <Button layoutX="407.0" layoutY="111.0" mnemonicParsing="false" onAction="#btn_envoyer" text="Envoyer" />
+      <Label fx:id="tf_titre" layoutX="75.0" layoutY="58.0" prefHeight="25.0" prefWidth="58.0" text="Titre :">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="tf_artiste" layoutX="74.0" layoutY="98.0" prefHeight="25.0" prefWidth="74.0" text="Artiste :">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField layoutX="143.0" layoutY="98.0" promptText="ecrire artiste" />
+      <TextField layoutX="143.0" layoutY="134.0" promptText="ecrire contenu" />
+      <TextField layoutX="144.0" layoutY="216.0" promptText="ecrire date" />
+      <Label fx:id="tn_date" layoutX="69.0" layoutY="216.0" prefHeight="25.0" prefWidth="149.0" text="Date_Pub :">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="92.0" layoutY="191.0" />
+      <Label fx:id="tn_contenu" layoutX="74.0" layoutY="137.0" text="Contenu :">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <TextField layoutX="143.0" layoutY="179.0" promptText="ecrire etiquette" />
+      <Label fx:id="tn_etiquette" layoutX="73.0" layoutY="182.0" text="Etiquette :">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="tn_image" layoutX="301.0" layoutY="62.0" text="Image :">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField layoutX="361.0" layoutY="58.0" promptText="télécharger image" />
+      <DatePicker layoutX="141.0" layoutY="216.0" promptText="jj/mm/aa" />
+   </children>
+</AnchorPane>
