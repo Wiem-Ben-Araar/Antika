@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="gui.AddEnchereController">
+   <children>
+      <ImageView fitHeight="439.0" fitWidth="712.0" layoutX="-9.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../Antika_NadaBkh/Antika_NadaBkh/font.jpg" />
+         </image>
+      </ImageView>
+      <DatePicker fx:id="dateFermetureTF" layoutX="187.0" layoutY="66.0" promptText="Date fermeture" />
+      <TextField fx:id="prixInitialeTF" layoutX="187.0" layoutY="107.0" prefHeight="26.0" prefWidth="175.0" promptText="Prix Initiale" />
+      <Text layoutX="80.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date Fermeture" />
+      <Text layoutX="80.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prix Initiale" />
+      <Button fx:id="createEnchereButton" layoutX="392.0" layoutY="138.0" mnemonicParsing="false" onAction="#createEnchere" text="Ajouter enchère" />
+      <ListView layoutX="78.0" layoutY="188.0" prefHeight="200.0" prefWidth="286.0" />
+      <Text layoutX="78.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste des enchères" />
+      <Button fx:id="getEnchereButton1" layoutX="395.0" layoutY="349.0" mnemonicParsing="false" onAction="#getEncheres" text="Afficher les enchères" />
+      <Button fx:id="deleteEnchereButton1" layoutX="537.0" layoutY="348.0" mnemonicParsing="false" onAction="#deleteEnchere" text="Supprimer un enchère" />
+   </children>
+</AnchorPane>
