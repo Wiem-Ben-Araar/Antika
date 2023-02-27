@@ -4,6 +4,10 @@
  */
 package antika;
 
+
+import Models.User;
+import Services.UserService;
+import Utilities.Type;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.image.ImageObserver;
@@ -43,26 +47,22 @@ import javafx.scene.layout.VBox;
  */
 public class NewFXMain extends Application {
     
-    /*public class ListViewSample extends Application {
-    
-    public static final ObservableList names = 
-        FXCollections.observableArrayList();
-    public static final ObservableList data = 
-        FXCollections.observableArrayList();
-       
-    public static void main(String[] args) {
-        launch(args);
-    }
-    */
     @Override
     public void start(Stage primaryStage) throws IOException {
         
        
-        
+        User currentUser = new User();
+        currentUser.setId_user(1);
+        currentUser.setType(Type.ARTISTE);
+        currentUser.setEmail("nada.bkh@gmail.com");
+        currentUser.setNom("Nada");
+
+        UserService userService = new UserService();
+        userService.login(currentUser);
        
      
         try {
-             Parent root = FXMLLoader.load(getClass().getResource("/gui/AddEnchere.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/gui/enchereAcceuil.fxml"));
            Scene scene = new Scene(root);
             primaryStage.setTitle("evenement CRUD");            
             primaryStage.setScene(scene);

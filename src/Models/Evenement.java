@@ -10,17 +10,28 @@ public class Evenement {
     private Date evenement_date;
     private int capacite;
     private String description;
+    private User createur;
 
     public Evenement() {}
 
-    public Evenement(int evenement_id, String nom, String lieu, Date date, int capacite, String description) {
+    public Evenement(int evenement_id, String nom, String lieu, Date date, int capacite, String description, User createur) {
         this.evenement_id = evenement_id;
         this.nom = nom;
         this.lieu = lieu;
         this.evenement_date = date;
         this.capacite = capacite;
         this.description = description;
+        this.createur = createur;
     }
+
+    public User getCreateur() {
+        return createur;
+    }
+
+    public void setCreateur(User createur) {
+        this.createur = createur;
+    }
+    
 
     public int getEvenement_id() {
         return evenement_id;
@@ -98,13 +109,6 @@ public class Evenement {
 
     @Override
     public String toString() {
-        return "Evenement{" +
-                "evenement_id=" + evenement_id +
-                ", nom='" + nom + '\'' +
-                ", lieu='" + lieu + '\'' +
-                ", evenement_date=" + evenement_date +
-                ", capacite=" + capacite +
-                ", description='" + description + '\'' +
-                '}';
+        return nom + " (" + evenement_date.toString() + ")" ;
     }
 }

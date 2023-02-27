@@ -5,56 +5,64 @@
  */
 package antika;
 
-import Interfaces.UserInterface;
-import Models.Avis;
-import Models.User;
-import Services.AvisService;
+import Models.*;
+import Services.EnchereService;
+import Services.EvenementService;
+import Services.MiseService;
 import Services.UserService;
 import Utilities.Type;
-import java.sql.Date;
-import static java.util.Collections.list;
-import java.util.List;
+import java.awt.BorderLayout;
+import java.util.Date;
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  *
  * @author wiemb
  */
 public class Antika {
- public static void main(String[] args) {
+    public static void main(String[] args) {
+        
+        //add event
+          Evenement event = new Evenement();
+      EvenementService serviceEvenement = new EvenementService();
+      event.setNom("Liber-toi");
+      event.setLieu("club G");
+      event.setEvenement_date(java.sql.Date.valueOf(LocalDate.now()));
+      event.setCapacite(500);
+      event.setDescription("By Libertad");
       
-     /*
-        UserService ps = new UserService();
-        User p = new User("Wiem2", "Ben Araar", "wiem.benaraar@esprit.tn", "90180310","La Sokra",Type.ADMINISTRATEUR);
-        User p1 = new User("Wided", "Ben Araar", "wiem.benaraar@esprit.tn", "90180310","La Sokra",Type.ADMINISTRATEUR);
+      //serviceEvenement.createEvenement(event);
+      //serviceEvenement.deleteEvenement(event,7);
+        //serviceEvenement.getEvenements(event);
+        
+        //serviceEvenement.updateEvenement(event);
+        //add user
+        User user = new User();
+        UserService userService = new UserService();
+        user.setNom("nada");
+        user.setPrenom("bkh");
+        user.setEmail("nada@gmail.com");
+        user.setMot_de_passe("12345678");
+        user.setType(Type.ARTISTE);
+        //userService.ajouterUser(user);
+        
        
-       ps.ajouterUser(p1);
-        ps.supprimerUser(6);
-       
-   ps.modifierUser(5,p);
- ps.afficherUser().forEach(System.out::println);
-  System.out.println("::::::::::");
-                ps.FiltrerParNom("wiem2").forEach(System.out::println);
-                
-          System.out.println("::::::::::");       
-            // ps.afficherUserbyID(3).forEach(System.out::println);
-            System.out.println("::::::::::Avis::::::::::::::");   
-            */
+        
+        
+        Produit produit = new Produit();
+        
+        Enchere enchere = new Enchere();
+        EnchereService enchereService = new EnchereService();
+        enchere.setPrix_initale(3000);
+        enchere.setDate_fermeture(Timestamp.valueOf(LocalDateTime.now()));
+        enchere.setCreateur(user);
+        enchere.setProduit(produit);
             
-          AvisService a = new AvisService();
-      Avis as = new Avis("magnifique",5);
-      
-      //  
-        Avis as2=new Avis("bonne",4);
-      //  a.ajouterAvis(as2);
-       // a.supprimerAvis(2);
+        //enchereService.createEnchere(enchere);
+        
        
-       //  a.modifierAvis(3, as2);
-         
-       //a.afficherAvis().forEach(System.out::println);
-       
-       UserService ps = new UserService();
-         a.FiltrerParId_avis(5).forEach(System.out::println);
-         ps.FiltrerParNom("wiem2").forEach(System.out::println);
       
     }
 }

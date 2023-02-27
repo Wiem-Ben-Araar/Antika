@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="806.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="gui.DisplayEncheresController">
+   <children>
+      <TableView fx:id="EnchereDetailsTable" layoutX="24.0" layoutY="32.0" onMouseClicked="#selectedEnchere" prefHeight="290.0" prefWidth="730.0">
+         <columns>
+            <TableColumn fx:id="prixInitialeTF" prefWidth="86.40002059936523" text="Prix Initiale" />
+            <TableColumn fx:id="prixFinaleTF" prefWidth="87.99996948242188" text="Prix finale" />
+            <TableColumn fx:id="creationDateTF" prefWidth="105.59999084472656" text="Date création" />
+            <TableColumn fx:id="dateFermetureTF" prefWidth="112.0" text="Date Fermeture" />
+            <TableColumn fx:id="gagnantTF" prefWidth="106.4000244140625" text="Gagnant" />
+            <TableColumn fx:id="createurTF" prefWidth="120.0" text="Créateur" />
+            <TableColumn fx:id="produitTF" prefWidth="112.0" text="Produit" />
+         </columns>
+      </TableView>
+      <Button fx:id="miser" layoutX="625.0" layoutY="335.0" mnemonicParsing="false" onMouseClicked="#placerMise" text="Placer un mise" />
+   </children>
+</AnchorPane>

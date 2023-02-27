@@ -6,16 +6,26 @@ package gui;
 
 import Interfaces.EvenementInterface;
 import Models.Evenement;
+import Models.Produit;
+import Models.User;
 import Services.EvenementService;
+import Services.UserService;
+import Utilities.MaConnexion;
 import java.net.URL;
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
@@ -35,44 +45,37 @@ public class EvenementFXMLController implements Initializable {
     @FXML
     private DatePicker eventDateLabel;
 
+    private User currentUser;
+
     /**
      * Initializes the controller class.
      */
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        currentUser = UserService.currentUser;
     }    
 
     @FXML
     private void createEvenement(ActionEvent event) {
-        
-        EvenementService evenementInterface = new EvenementService();
-        Evenement evenement = new Evenement();
-        
-        evenement.setNom(eventNomLabel.getText());
-        evenement.setLieu(eventLieuLabel.getText());
-        evenement.setCapacite(Integer.parseInt(eventCapaciteLabel.getText()));
-        evenement.setDescription(eventDescLabel.getText());
-        evenement.setEvenement_date(Date.valueOf(eventDateLabel.getValue()));
-        
-        evenementInterface.createEvenement(evenement);
-        
+        try {
+            EvenementService evenementService = new EvenementService();
+            Evenement evenement = new Evenement();
+            int newCapacite = Integer.parseInt(eventCapaciteLabel.getText());
+            Date newDate = Date.valueOf(eventDateLabel.getValue());
+            evenement.setNom(eventNomLabel.getText());
+            evenement.setLieu(eventLieuLabel.getText());
+            evenement.setCapacite(newCapacite);
+            evenement.setDescription(eventDescLabel.getText());
+            evenement.setEvenement_date(newDate);
+            evenement.setCreateur(currentUser);
+            evenementService.createEvenement(evenement);
+        } catch(NumberFormatException nfe) {
+            JOptionPane.showMessageDialog(null, "Veuillez saisir une capacité valide.");
+        } catch(IllegalArgumentException iae) {
+            JOptionPane.showMessageDialog(null, "Veuillez saisir une date valide.");
+        }
+        JOptionPane.showMessageDialog(null, "L'evenement a été ajouté avec succés.");
     }
-
-   /* @FXML
-    private void deleteEvenement(ActionEvent event) {
-        EvenementService evenementInterface = new EvenementService();
-        Evenement evenement = new Evenement();
-        evenementInterface.deleteEvenement(evenement,7);
-    }
-
-    @FXML
-    private void updateEvenement(ActionEvent event) {
-        
-        EvenementService evenementInterface = new EvenementService();
-        Evenement evenement = new Evenement();
-        evenementInterface.updateEvenement(evenement);
-    }*/
-
     
 }

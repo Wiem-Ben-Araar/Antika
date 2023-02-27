@@ -4,24 +4,19 @@
  */
 package gui;
 
-import Models.Enchere;
-import Services.EnchereService;
+import Models.User;
+import Services.UserService;
+import Utilities.Type;
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.input.DragEvent;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -30,47 +25,35 @@ import javafx.stage.StageStyle;
  *
  * @author nadab
  */
-public class AcceuilEvenementController implements Initializable {
+public class EnchereAcceuilController implements Initializable {
 
-
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
-    @FXML
-    private Button addEventButton;
-    @FXML
-    private Button updateEvent;
     @FXML
     private Button enchereButton;
     @FXML
+    private Button EventButton;
+    @FXML
     private Button displayEventButton;
+    @FXML
+    private Button displayEnchereDetails;
+    private UserService userService = new UserService();
 
-    
-  
+    /**
+     * Initializes the controller class.
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
+        User currentUser = UserService.currentUser;
+        if (currentUser.getType()==Type.CLIENT){
+            enchereButton.setVisible(false);
+            EventButton.setVisible(false);
+        }
+        
     }    
 
     @FXML
-    private void buttonAddEvenement(MouseEvent event) throws IOException {
-        
-          try {
-            Parent root = FXMLLoader.load(getClass().getResource("evenementFXML.fxml"));
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.initStyle(StageStyle.UTILITY);
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
-    private void buttonUpdateEvent(MouseEvent event) throws IOException {
-        
-        Parent root = FXMLLoader.load(getClass().getResource("ModifierEvent.fxml"));
+    private void displayEncheres(MouseEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("UpdateEnchere.fxml"));
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setScene(scene);
@@ -79,30 +62,37 @@ public class AcceuilEvenementController implements Initializable {
     }
 
     @FXML
-    private void goToEnchere(MouseEvent event) throws IOException {
+    private void displayEvenements(MouseEvent event) throws IOException {
         
-       Parent root = FXMLLoader.load(getClass().getResource("enchereAcceuil.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("displayEvents.fxml"));
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.initStyle(StageStyle.UTILITY);
-            stage.show();
+            stage.show();        
     }
 
     @FXML
     private void displayEvents(MouseEvent event) throws IOException {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("DisplayEvents.fxml"));
+        
+          Parent root = FXMLLoader.load(getClass().getResource("EventDetails.fxml"));
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.initStyle(StageStyle.UTILITY);
-            stage.show();
+            stage.show();        
             
-       } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
+    @FXML
+    private void displayEnchereDetails(MouseEvent event) throws IOException {
+        
+        Parent root = FXMLLoader.load(getClass().getResource("displayEncheres.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.initStyle(StageStyle.UTILITY);
+            stage.show(); 
+    }
     
 }

@@ -1,6 +1,7 @@
 package Services;
 
 import Models.Evenement;
+import Models.User;
 import Utilities.MaConnexion;
 
 import java.sql.*;
@@ -20,7 +21,7 @@ public class EvenementService {
             System.err.println("[createEvenement] Trying to add a null entity");
             return ;
         }
-        String request = "INSERT INTO evenement(nom, lieu, evenement_date, capacite, description) VALUES (?, ?, ?, ?, ?)";
+        String request = "INSERT INTO evenement(nom, lieu, evenement_date, capacite, description, createur) VALUES (?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(request);
             preparedStatement.setString(1, evenement.getNom());
@@ -28,6 +29,7 @@ public class EvenementService {
             preparedStatement.setDate(3, evenement.getEvenement_date());
             preparedStatement.setInt(4, evenement.getCapacite());
             preparedStatement.setString(5, evenement.getDescription());
+            preparedStatement.setInt(6, evenement.getCreateur().getId_user());
             preparedStatement.executeUpdate();
             System.out.println("Votre evenement est ajouté avec succés.");
         } catch (SQLException ex) {
@@ -35,15 +37,14 @@ public class EvenementService {
         }
     }
 
-    public void deleteEvenement(Evenement evenement,int evenement_id) {
+    public void deleteEvenement(Evenement evenement) {
         if(evenement == null) {
             System.err.println("[deleteEvenement] Trying to delete a null entity");
             return ;
         }
-        String request = "DELETE FROM evenement WHERE evenement_id ="+evenement_id+"";
+        String request = "DELETE FROM evenement WHERE evenement_id = " + evenement.getEvenement_id();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(request);
-            //preparedStatement.setInt(1, evenement.getEvenement_id());
             preparedStatement.executeUpdate();
             System.out.println("Votre evenement est supprimé avec succés.");
         } catch (SQLException ex) {
@@ -55,6 +56,22 @@ public class EvenementService {
         List<Evenement> evenements = new ArrayList<>();
         try {
             String request = "SELECT * FROM evenement WHERE lieu LIKE '%" + lieu + "%'";
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(request);
+            while (resultSet.next()) {
+                Evenement evenement = createEvenementFromResultSet(resultSet);
+                evenements.add(evenement);
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return evenements;
+    }
+
+    public List<Evenement> getEvenementsByCreateur(int createurId) {
+        List<Evenement> evenements = new ArrayList<>();
+        try {
+            String request = "SELECT * FROM evenement WHERE createur = " + createurId;
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(request);
             while (resultSet.next()) {
@@ -105,8 +122,15 @@ public class EvenementService {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(request);
             while (resultSet.next()) {
-                Evenement evenement = createEvenementFromResultSet(resultSet);
-                evenements.add(evenement);
+            Evenement evenement = new Evenement();
+            evenement.setEvenement_id(resultSet.getInt(1));
+            evenement.setNom( resultSet.getString(2));
+            evenement.setLieu( resultSet.getString(3));
+            evenement.setDescription( resultSet.getString(4));
+            evenement.setCapacite( resultSet.getInt(5)); 
+            evenement.setEvenement_date( resultSet.getDate(6));
+            evenements.add(evenement);
+                //statement.execute(request);
             }
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
@@ -114,8 +138,8 @@ public class EvenementService {
         return evenements;
     }
 
-    public void updateEvenement(Evenement evenement, int evenement_id) {
-        String request = "UPDATE evenement set nom = ?, lieu = ?, evenement_date = ?, capacite = ?, description = ? WHERE evenement_id ="+evenement_id+"";
+    public void updateEvenement(Evenement evenement) {
+        String request = "UPDATE evenement set nom = ?, lieu = ?, evenement_date = ?, capacite = ?, description = ? where evenement_id = " + evenement.getEvenement_id();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(request);
             preparedStatement.setString(1, evenement.getNom());
@@ -131,13 +155,15 @@ public class EvenementService {
     }
 
     private Evenement createEvenementFromResultSet(ResultSet resultSet) throws SQLException {
-       /* Evenement event = new Evenement();*/
-        int evenementId= resultSet.getInt (1);
+        int evenementId = resultSet.getInt(1);
         String nom = resultSet.getString(2);
         String lieu = resultSet.getString(3);
         String description = resultSet.getString(4);
         int capacite = resultSet.getInt(5);
         Date evenementDate = resultSet.getDate(6);
-        return new Evenement(evenementId, nom, lieu, evenementDate, capacite, description);
+        int createurId = resultSet.getInt(7);
+        User createur = new User();
+        createur.setId_user(createurId);
+        return new Evenement(evenementId, nom, lieu, evenementDate, capacite, description, createur);
     }
 }

@@ -29,4 +29,5 @@ import java.util.List;
     public User afficherUserbyID(int id);
     
     public List<User> FiltrerParNom(String nom); 
+    public void login(User user);
 }

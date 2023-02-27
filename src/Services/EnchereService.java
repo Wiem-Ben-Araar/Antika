@@ -29,7 +29,7 @@ public class EnchereService {
             System.err.println("[CreateEnchere] Product can't be null");
             return ;
         }
-        String request = "INSERT INTO enchere(prix_initale, date_fermeture, createur, produit) VALUES (? , ? , ? , ?)";
+        String request = "INSERT INTO enchere(prix_initiale, date_fermeture, createur, produit) VALUES (? , ? , ? , ?)";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(request);
             preparedStatement.setInt(1, enchere.getPrix_initale());
@@ -138,6 +138,21 @@ public class EnchereService {
         Enchere enchere = null;
         try {
             String request = "SELECT * FROM enchere WHERE enchere_id = " + enchere_id;
+            PreparedStatement preparedStatement = connection.prepareStatement(request);
+            ResultSet resultSet = preparedStatement.executeQuery(request);
+            while (resultSet.next()){
+                enchere = createEnchereFromResultSet(resultSet);
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return enchere;
+    }
+    
+    public Enchere getEnchereByProductName(Produit produit) {
+        Enchere enchere = null;
+        try {
+            String request = "SELECT * FROM enchere WHERE produit = " + produit;
             PreparedStatement preparedStatement = connection.prepareStatement(request);
             ResultSet resultSet = preparedStatement.executeQuery(request);
             while (resultSet.next()){

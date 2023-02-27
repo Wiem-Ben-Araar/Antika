@@ -26,6 +26,14 @@ import java.util.logging.Logger;
 public class UserService implements UserInterface {
     Connection cnx = MaConnexion.getInstance().getCnx();
 
+    public static User currentUser;
+
+    @Override
+    public void login(User user) {
+        currentUser = user;
+
+    }
+    
     @Override
     public void ajouterUser(User p) {
        String req = "INSERT INTO `user`(`nom`, `prenom`, `email` ,`telephone`,`adresse`,`type`, `mot_de_passe`) VALUES ('"+p.getNom()+"','"+p.getPrenom()+"','"+p.getEmail()+"','"+p.getTelephone()+"','"+p.getAdresse()+"','"+p.getType()+"','"+p.getMot_de_passe()+"')";

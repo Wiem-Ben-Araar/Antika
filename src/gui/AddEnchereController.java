@@ -14,6 +14,7 @@ import Utilities.Type;
 import static com.sun.xml.internal.fastinfoset.alphabet.BuiltInRestrictedAlphabets.table;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -29,11 +30,16 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.ComboBoxListCell;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
 /**
  * FXML Controller class
@@ -43,28 +49,32 @@ import javafx.scene.control.cell.ComboBoxListCell;
 public class AddEnchereController implements Initializable {
 
     @FXML
-    private DatePicker dateFermetureTF;
-    @FXML
     private TextField prixInitialeTF;
     @FXML
     private Button createEnchereButton;
+    private TableColumn<Enchere, Integer> prixInitTF;
+    private TableColumn<Enchere, Integer> prixFinalTF;
+    private TableColumn<Enchere, Timestamp> CreationTF;
+    private TableColumn<Enchere, Timestamp> FermetureTF;
+    private TableColumn<Enchere, Integer> winnerTF;
+    private TableColumn<Enchere, Integer> creatorTF;
+    private TableColumn<Enchere, Integer> productTF;
+    private TableView<Enchere> display;
     @FXML
-    private Button getEnchereButton1;
-    @FXML
-    private Button deleteEnchereButton1;
+    private TextField productID;
 
     /**
      * Initializes the controller class.
      */
     
-    Enchere enchere = new Enchere();
+   /* Enchere enchere = new Enchere();
     List<Enchere> encheres = new ArrayList<>();
     EnchereService enchereService = new EnchereService();
     ObservableList<Enchere> data = FXCollections.observableArrayList(enchereService.getEncheres());
      /**
      * Initializes the controller class.
      */
-    ObservableList<Enchere> eventList = FXCollections.observableArrayList();
+   // ObservableList<Enchere> eventList = FXCollections.observableArrayList();
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -74,74 +84,55 @@ public class AddEnchereController implements Initializable {
     @FXML
     private void createEnchere(ActionEvent event) {
         
-        User user = new User();  
-        
         Produit produit = new Produit();
-        
+        produit.setId(Integer.parseInt(productID.getText()));
         Enchere enchere = new Enchere();
         EnchereService enchereService = new EnchereService();
        
-        enchere.setPrix_initale(300);
-        enchere.setDate_fermeture(Timestamp.valueOf(LocalDateTime.now()));
-        enchere.setCreateur(user);
+        
+        enchere.setPrix_initale(Integer.parseInt(prixInitialeTF.getText()));
         enchere.setProduit(produit);
-        enchere.setPrix_initale(300);
-            
+        enchere.setDate_fermeture(Timestamp.valueOf(LocalDateTime.now()));
+        
         enchereService.createEnchere(enchere);
         
     }
 
-    @FXML
-    private Enchere getEncheres(ActionEvent event) throws SQLException {
+   
+
+    private void displayEnchere(MouseEvent event) {
         
-      Connection  connection = MaConnexion.getInstance().getCnx();
-      String request = "SELECT * FROM enchere";
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(request);
-            while (resultSet.next()) {
-               int enchereId = resultSet.getInt(1);
-        int prixInitale = resultSet.getInt(2);
-        int prixFinale = resultSet.getInt(3);
-        Timestamp dateCreation = resultSet.getTimestamp(4);
-        Timestamp dateFermeture = resultSet.getTimestamp(5);
-        int gagnantId = resultSet.getInt(6);
-        int createurId = resultSet.getInt(7);
-        int produitId = resultSet.getInt(8);
+        EnchereService enchereService = new EnchereService();
+        List <Enchere> enchereList;
+        enchereList = enchereService.getEncheres();
+        ObservableList<Enchere> encheres = FXCollections.observableList(enchereList);
+        
+        prixInitTF.setCellValueFactory(new PropertyValueFactory<>("prix_initiale"));
+        prixFinalTF.setCellValueFactory(new PropertyValueFactory<>("prix_finale"));
+        CreationTF.setCellValueFactory(new PropertyValueFactory<>("date_creation"));
+        FermetureTF.setCellValueFactory(new PropertyValueFactory<>("date_fermeture"));
+        winnerTF.setCellValueFactory(new PropertyValueFactory<>("gagnant"));
+        creatorTF.setCellValueFactory(new PropertyValueFactory<>("createur"));
+        productTF.setCellValueFactory(new PropertyValueFactory<>("produit"));
 
-       /* User gagnant = createUserWithId(gagnantId);
-        User createur = createUserWithId(createurId);
-        Produit produit = createProduitWithId(produitId);*/
+        display.setItems(encheres);
 
-        //return new Enchere(enchereId, prixInitale, prixFinale, dateCreation, dateFermeture, gagnant, createur, produit);
-                encheres.add(enchere);
+    }
 
-              
-    }   return null;
-}
+    private void deleteEnchere(MouseEvent event) {
+        
+       
+        EnchereService enchereService = new EnchereService();
+        Enchere enchere = new Enchere();
+        enchereService.deleteEnchere(enchere);
+        
+        
+    }
 
     @FXML
-    private void deleteEnchere(ActionEvent event, int produit_id) throws SQLException {
-        Enchere enchere= new Enchere();
-         EnchereService enchereService = new EnchereService();
-           // encheres= table.getSelectionModel().getSelectedItems();
-            Connection connection = MaConnexion.getInstance().getCnx();  
-            
-           String request = "DELETE FROM enchere WHERE produit_id = ?";
-      PreparedStatement preparedStatement = connection.prepareStatement(request);
-      preparedStatement.setInt(1, produit_id);
-
-      // execute the preparedstatement
-      preparedStatement.executeUpdate();
-                      // enchere_id.clear();
-                       //dateFermetureTF.clear();
-                     /*  tflieu.clear();
-                       tfdate.getEditor().clear();
-                       tfcapacite.clear();
-                       tfdescription.clear();*/
-                 
-      
-     
+    private void createEnchere(MouseEvent event) {
     }
+
 }
     
     
