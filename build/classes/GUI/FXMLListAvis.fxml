@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FXMLListAvisController">
+   <children>
+      <ImageView fitHeight="413.0" fitWidth="715.0" focusTraversable="true" layoutX="-7.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@image/b.jpg" />
+         </image>
+      </ImageView>
+      <ListView fx:id="lview" editable="true" fixedCellSize="50.0" layoutX="133.0" layoutY="78.0" opacity="0.56" prefHeight="181.0" prefWidth="415.0" style="-fx-background-color: #c8a888;" />
+      <Button layoutX="199.0" layoutY="272.0" mnemonicParsing="false" onMouseClicked="#btn_supprimer" style="-fx-background-color: #611a20;" text="Supprimer" textFill="WHITE" />
+      <Button layoutX="382.0" layoutY="271.0" mnemonicParsing="false" onMouseClicked="#btn_ajouter" prefHeight="26.0" prefWidth="71.0" style="-fx-background-color: #611a20;" text="Ajouter" textFill="WHITE" />
+      <Text fx:id="info" fill="RED" layoutX="317.0" layoutY="341.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+   </children>
+</AnchorPane>
