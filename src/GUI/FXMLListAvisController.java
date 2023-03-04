@@ -57,7 +57,7 @@ private AvisService avisService = new AvisService();
     public void updateItem(Avis avis, boolean empty) {
         super.updateItem(avis, empty) ;
         setText(empty ? null : avis.getCommentaire()+"    "+avis.getNote());
-    
+
     }
 });
     } 
@@ -71,11 +71,11 @@ private AvisService avisService = new AvisService();
              lview.getItems().clear();
         lview.getItems().addAll(avisService.afficherAvis());
         lview.setCellFactory(lv -> new ListCell<Avis>() {
-            
+
     public void updateItem(Avis avis, boolean empty) {
         super.updateItem(avis, empty) ;
         setText(empty ? null : avis.getCommentaire()+"    "+avis.getNote());
-    
+
     }
 });
         }else{
@@ -83,7 +83,7 @@ private AvisService avisService = new AvisService();
         }
     }
 
-  
+
 
     @FXML
     private void btn_ajouter(MouseEvent event) throws IOException {
@@ -95,4 +95,3 @@ private AvisService avisService = new AvisService();
         window.show();
     }
     } 
-

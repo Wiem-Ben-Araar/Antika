@@ -33,6 +33,7 @@ import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
+import java.util.Random;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -73,70 +74,74 @@ public class FXMLCodeMDPController implements Initializable {
       
     }
 
-    @FXML
-    private void SendCodeButton(MouseEvent event) {
-         String email = emailField.getText();
-         
-            UserService userService = new UserService();
-            User user = userService.afficherUserbyEmail(email);
-        if (!email.isEmpty()) {
-            // Créer une session JavaMail avec les informations du compte de messagerie
-            String username = "wbenaraar@gmail.com";
-          
-            String password = "svxayesbenklvobs";
+   @FXML
+private void SendCodeButton(MouseEvent event) {
+    String email = emailField.getText();
+    
+    UserService userService = new UserService();
+    User user = userService.afficherUserbyEmail(email);
+    
+    if (!email.isEmpty()) {
+        // Créer une session JavaMail avec les informations du compte de messagerie
+        String username = "wbenaraar@gmail.com";
+        String password = "svxayesbenklvobs";
 
-            
-            Properties props = new Properties();
-            props.put("mail.smtp.auth", "true");
-            props.put("mail.smtp.starttls.enable", "true");
-            props.put("mail.smtp.host", "smtp.gmail.com");
-            props.put("mail.smtp.port", "587");
-          
-           Session session = Session.getInstance(props,
-          new javax.mail.Authenticator() {
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
+
+        Session session = Session.getInstance(props, new javax.mail.Authenticator() {
             protected javax.mail.PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(username, password);
             }
-          });
+        });
 
-            try {
-                // Créer un message de récupération de mot de passe
-                String subject = "Récupération de mot de passe";
-                String messageBody = "Bonjour,\n\n" +
-                        "Voici votre nouveau mot de passe :" +user.getTelephone() + "\n\n"+
-                        "Cordialement,\n" +
-                        "Antika";
-                Message message = new MimeMessage(session);
-                message.setFrom(new InternetAddress(username));
-                message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
-                message.setSubject(subject);
-                message.setText(messageBody);
-                // Envoyer nouveau mot de passe
-                
-                user.setMot_de_passe(user.getTelephone());
-                userService.modifierUser(user.getId_user(), user);
-                
-                // Envoyer le message
-                Transport.send(message);
+        try {
+            // Générer un code aléatoire
+            Random random = new Random();
+            int code = 100000 + random.nextInt(900000);
+            String codeStr = Integer.toString(code);
 
-                // Afficher un message de confirmation à l'utilisateur
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Succès");
-                alert.setHeaderText(null);
-                alert.setContentText("Un e-mail de récupération de mot de passe a été envoyé à " + email);
-                alert.showAndWait();
+            // Créer un message de récupération de mot de passe
+            String subject = "Récupération de mot de passe";
+            String messageBody = "Bonjour,\n\n" +
+                    "Voici votre code :" + codeStr + "\n\n"+
+                    "Cordialement,\n" +
+                    "Antika";
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(username));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
+            message.setSubject(subject);
+            message.setText(messageBody);
 
-            } catch (MessagingException e) {
-                // Afficher un message d'erreur si l'envoi du message échoue
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Erreur");
-                alert.setHeaderText(null);
-                alert.setContentText("Impossible d'envoyer l'e-mail de récupération de mot de passe. Veuillez réessayer plus tard.");
-                alert.showAndWait();
-                e.printStackTrace();
-            }
+            // Mettre à jour le mot de passe dans la base de données
+            user.setMot_de_passe(codeStr);
+            userService.modifierUser(user.getId_user(), user);
+
+            // Envoyer le message
+            Transport.send(message);
+
+            // Afficher un message de confirmation à l'utilisateur
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Succès");
+            alert.setHeaderText(null);
+            alert.setContentText("Un e-mail de récupération de mot de passe a été envoyé à " + email);
+            alert.showAndWait();
+
+        } catch (MessagingException e) {
+            // Afficher un message d'erreur si l'envoi du message échoue
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText(null);
+            alert.setContentText("Impossible d'envoyer l'e-mail de récupération de mot de passe. Veuillez réessayer plus tard.");
+            alert.showAndWait();
+            e.printStackTrace();
         }
     }
+}
+
 
     @FXML
     private void ModifierMotDePasse(MouseEvent event) throws IOException {

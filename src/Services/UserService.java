@@ -10,6 +10,8 @@ import Models.User;
 import Models.Avis;
 import Utilities.MaConnexion;
 import Utilities.Type;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -31,7 +33,7 @@ public class UserService implements UserInterface {
    
 @Override
     public void ajouterUser(User p) {
-       String req = "INSERT INTO `user`(`nom`, `prenom`, `email` ,`telephone`,`adresse`,`type`,`mot_de_passe`,`id_avis`) VALUES ('"+p.getNom()+"','"+p.getPrenom()+"','"+p.getEmail()+"','"+p.getTelephone()+"','"+p.getAdresse()+"','"+p.getType()+"','"+p.getMot_de_passe()+"','"+p.getAvis().getId_avis()+"')";
+       String req = "INSERT INTO `user`(`nom`, `prenom`, `email` ,`telephone`,`adresse`,`type`,`mot_de_passe`,`confirmer_motdepasse`,`image`,`id_avis`) VALUES ('"+p.getNom()+"','"+p.getPrenom()+"','"+p.getEmail()+"','"+p.getTelephone()+"','"+p.getAdresse()+"','"+p.getType()+"','"+p.getMot_de_passe()+"','"+p.getConfirmer_motdepasse()+"','"+p.getImage()+"','"+p.getAvis().getId_avis()+"')";
         try {
             Statement st = cnx.createStatement();
             st.executeUpdate(req);
@@ -40,23 +42,53 @@ public class UserService implements UserInterface {
             Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    @Override
-    public void ajouterUser2(User p) {
-       String req = "INSERT INTO `user`(`nom`, `prenom`, `email` ,`telephone`,`adresse`,`type`,`mot_de_passe`) VALUES ('"+p.getNom()+"','"+p.getPrenom()+"','"+p.getEmail()+"','"+p.getTelephone()+"','"+p.getAdresse()+"','"+p.getType()+"','"+p.getMot_de_passe()+"')";
-        try {
-            Statement st = cnx.createStatement();
-            st.executeUpdate(req);
-            System.out.println("User ajouté avec success!!");
-        } catch (SQLException ex) {
-            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+    private String hashPassword(String password) {
+    String generatedPassword = null;
+
+    try {
+        MessageDigest md = MessageDigest.getInstance("MD5");
+        md.update(password.getBytes());
+        byte[] bytes = md.digest();
+
+        StringBuilder sb = new StringBuilder();
+        for(int i=0; i< bytes.length ;i++){
+            sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
         }
+        generatedPassword = sb.toString();
+    } catch (NoSuchAlgorithmException e) {
+        e.printStackTrace();
     }
 
+    return generatedPassword;
+}
+
+@Override
+public void ajouterUser2(User p) {
+    String hashedPassword = hashPassword(p.getMot_de_passe());
+    String hashedConfirmerPassword = hashPassword(p.getConfirmer_motdepasse());
+
+    String req = "INSERT INTO `user`(`nom`, `prenom`, `email` ,`telephone`,`adresse`,`type`,`mot_de_passe`,`confirmer_motdepasse`,`image`) VALUES ( ?, ?, ?, ?, ?, ?, ?,?,?)";
+    try (PreparedStatement ps = cnx.prepareStatement(req)) {
+        ps.setString(1, p.getNom());
+        ps.setString(2, p.getPrenom());
+        ps.setString(3, p.getEmail());
+        ps.setString(4, p.getTelephone());
+        ps.setString(5, p.getAdresse());
+        ps.setString(6, p.getType().toString());
+        ps.setString(7, hashedPassword);
+        ps.setString(8, hashedConfirmerPassword);
+        ps.setBytes(9, p.getImage());
+        ps.executeUpdate();
+        System.out.println("User ajouté avec succès!!");
+    } catch (SQLException ex) {
+        Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+    }
+}
 
     @Override
     public void modifierUser(int id, User p) {
        try{
-             String req ="UPDATE `user` SET `nom`=?,`prenom`=?,`email`=?,`telephone`=?,`adresse`=?,`type`=?,`mot_de_passe`=?,`id_avis`=? WHERE id_user='"+id+"'";
+             String req ="UPDATE `user` SET `nom`=?,`prenom`=?,`email`=?,`telephone`=?,`adresse`=?,`type`=?,`mot_de_passe`=?,`confirmer_motdepasse`=?,`image`=?,`id_avis`=? WHERE id_user='"+id+"'";
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setString(1, p.getNom());
             ps.setString(2, p.getPrenom());
@@ -65,7 +97,9 @@ public class UserService implements UserInterface {
             ps.setString(5, p.getAdresse());
             ps.setString(6, p.getType().toString());
             ps.setString(7, p.getMot_de_passe());
-            ps.setInt(8, p.getAvis().getId_avis());
+            ps.setString(8, p.getConfirmer_motdepasse());
+            ps.setBytes(9, p.getImage());
+            ps.setInt(9, p.getAvis().getId_avis());
             ps.executeUpdate();
             System.out.println("Utlisateur est modifié");
             } catch (SQLException ex) {
@@ -108,6 +142,8 @@ public class UserService implements UserInterface {
                  System.out.println(rs.getString("Type"));
                  p.setType(Type.valueOf(rs.getString("Type")));
                  p.setMot_de_passe(rs.getString("Mot_de_passe"));
+                 p.setConfirmer_motdepasse(rs.getString("Confirmer_motdepasse"));
+                 p.setImage(rs.getBytes("Image"));
                  p.setAvis(ps.afficherAvisbyID(rs.getInt("id_avis")));
                 
                 personnes.add(p);
@@ -135,6 +171,8 @@ public class UserService implements UserInterface {
                 p.setAdresse(rs.getString("adresse"));
                 p.setType(Type.valueOf(rs.getString("type")));
                 p.setMot_de_passe(rs.getString("mot_de_passe"));
+                p.setConfirmer_motdepasse(rs.getString("Confirmer_motdepasse"));
+                p.setImage(rs.getBytes("Image"));
                 p.setAvis(ps.afficherAvisbyID(rs.getInt("id_avis")));
                 
             }
@@ -159,6 +197,8 @@ public class UserService implements UserInterface {
                 p.setAdresse(rs.getString("adresse"));
                 p.setType(Type.valueOf(rs.getString("type")));
                 p.setMot_de_passe(rs.getString("mot_de_passe"));
+                p.setConfirmer_motdepasse(rs.getString("Confirmer_motdepasse"));
+                p.setImage(rs.getBytes("Image"));
                 p.setAvis(ps.afficherAvisbyID(rs.getInt("id_avis")));
                 
             }
@@ -185,6 +225,8 @@ public class UserService implements UserInterface {
                 p.setAdresse(rs.getString("Adresse"));
                 p.setType(Type.valueOf(rs.getString("Type")));
                 p.setMot_de_passe(rs.getString("Mot_de_passe"));
+                p.setConfirmer_motdepasse(rs.getString("Confirmer_motdepasse"));
+                p.setImage(rs.getBytes("Image"));
                 
               
                 
@@ -213,6 +255,8 @@ public class UserService implements UserInterface {
                 p.setAdresse(rs.getString("Adresse"));
                 p.setType(Type.valueOf(rs.getString("Type")));
                 p.setMot_de_passe(rs.getString("Mot_de_passe"));
+                p.setConfirmer_motdepasse(rs.getString("Confirmer_motdepasse"));
+                p.setImage(rs.getBytes("Image"));
                 
              
               
@@ -225,7 +269,21 @@ public class UserService implements UserInterface {
         return personnes;
     }
 
-
+ @Override
+    public boolean userExiste(String email) {
+        boolean exists = false;
+        String request = "SELECT * FROM user WHERE email = ?";
+        try (PreparedStatement ps = cnx.prepareStatement(request)) {
+            ps.setString(1, email);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                exists = true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return exists;
+    }
 
 }
 

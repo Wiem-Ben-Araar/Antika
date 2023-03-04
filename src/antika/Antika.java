@@ -33,8 +33,8 @@ public class Antika {
          as2.setId_avis(20);
     // a.ajouterAvis(as2);
     // a.ajouterAvis(as1);
-        User p1 = new User("dali", "Belhaj", "dali@esprit.tn", "56789457","Manzah",Type.CLIENT,"dali",as1);  
-        User p2 = new User("Wided", "Ben Araar", "wiem.benaraar@esprit.tn", "90180310","La Sokra",Type.ADMINISTRATEUR,"doudouu",as2);
+        User p1 = new User("dali", "Belhaj", "dali@esprit.tn", "56789457","Manzah",Type.CLIENT,"dali","dali",null,as1);  
+        User p2 = new User("Wided", "Ben Araar", "wiem.benaraar@esprit.tn", "90180310","La Sokra",Type.ADMINISTRATEUR,"doudouu","doudou",null,as2);
        
 
     ps.ajouterUser(p1); 

@@ -1,9 +1,13 @@
+package GUI;
+
+
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GUI;
+
 
 import java.io.IOException;
 import java.util.logging.Level;
@@ -26,7 +30,7 @@ public class NewFXMain extends Application {
     public void start(Stage primaryStage) throws IOException {
      
         try {
-            Parent root=FXMLLoader.load(getClass().getResource("FXMLListUser.fxml"));
+            Parent root=FXMLLoader.load(getClass().getResource("Market.fxml"));
            
             Scene scene = new Scene(root);
             

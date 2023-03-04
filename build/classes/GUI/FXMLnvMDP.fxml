@@ -16,7 +16,7 @@
             <Image url="@image/b.jpg" />
          </image>
       </ImageView>
-      <Label layoutX="86.0" layoutY="147.0" text="Ancien mot de passe" />
+      <Label layoutX="177.0" layoutY="147.0" text="Code " />
       <Button layoutX="290.0" layoutY="284.0" mnemonicParsing="false" onMouseClicked="#Modifier" style="-fx-background-color: #611a20;" text="Modifier" />
       <Label layoutX="77.0" layoutY="185.0" text="Nouveau mot de passe" />
       <Label layoutX="77.0" layoutY="227.0" text="Confimer mot de passe" />

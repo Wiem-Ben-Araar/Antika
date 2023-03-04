@@ -32,4 +32,5 @@ import java.util.List;
     public User afficherUserbyID(int id_user);
     
     public List<User> FiltrerParNom(String nom); 
+    public boolean userExiste(String email);
 }
