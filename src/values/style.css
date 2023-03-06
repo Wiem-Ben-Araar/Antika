@@ -1,0 +1,56 @@
+.search-box{
+    -fx-background-color:#FFFFFF;
+    -fx-background-radius: 100;
+}
+.anchor-bar{
+    -fx-background-color:#d1a88e;
+}
+.scroll-bar{
+        -fx-background-color:#d1a88e;
+        -fx-background-radius: 30;
+}
+
+.search-button{
+    -fx-background-color: #b97936;
+    -fx-background-radius: 30;
+}
+
+.right-bar{
+    -fx-background-color: #d1a88e;
+}
+.right-bar1{
+    -fx-background-color: #6DD100;
+}
+.shadow{
+    -fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.1), 10.0 , 0.0 , 0.0 ,10.0);
+}
+
+.chosen-fruit-card{
+    -fx-background-color: #9a3737;
+    -fx-background-radius: 30;
+}
+
+.comboBox{
+    -fx-background-color: #bb5735;
+    -fx-background-radius: 30;
+}
+
+.add-btn{
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 100;
+}
+
+.free-delivery-card{
+    -fx-background-color:  #6DD100;
+    -fx-background-radius: 30;
+}
+
+.shopping-online-card{
+    -fx-background-color: #bb5735;
+    -fx-background-radius: 30;
+}
+
+.fruit-item{
+    -fx-background-color: #d1b266;
+        -fx-background-radius: 30;
+}

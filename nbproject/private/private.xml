@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/Dali/Documents/NetBeansProjects/GestionProduit/src/gui/MyListener.java</file>
+            <file>file:/C:/Users/Dali/Documents/NetBeansProjects/GestionProduit/src/controller/AfficheReclamationController.java</file>
+            <file>file:/C:/Users/Dali/Documents/NetBeansProjects/GestionProduit/src/gui/item.fxml</file>
+            <file>file:/C:/Users/Dali/Documents/NetBeansProjects/GestionProduit/src/gui/testB.java</file>
+            <file>file:/C:/Users/Dali/Documents/NetBeansProjects/GestionProduit/src/gui/Market.fxml</file>
+            <file>file:/C:/Users/Dali/Documents/NetBeansProjects/GestionProduit/src/gui/AjoutProduit.fxml</file>
+            <file>file:/C:/Users/Dali/Documents/NetBeansProjects/GestionProduit/src/values/style.css</file>
+            <file>file:/C:/Users/Dali/Documents/NetBeansProjects/GestionProduit/src/gui/testJ.java</file>
+            <file>file:/C:/Users/Dali/Documents/NetBeansProjects/GestionProduit/src/controller/MarketController.java</file>
+            <file>file:/C:/Users/Dali/Documents/NetBeansProjects/GestionProduit/src/models/Reclamation.java</file>
+            <file>file:/C:/Users/Dali/Documents/NetBeansProjects/GestionProduit/src/gestionproduit/GestionProduit.java</file>
+            <file>file:/C:/Users/Dali/Documents/NetBeansProjects/GestionProduit/src/controller/ModifierProduitController.java</file>
+            <file>file:/C:/Users/Dali/Documents/NetBeansProjects/GestionProduit/src/gui/listener.java</file>
+            <file>file:/C:/Users/Dali/Documents/NetBeansProjects/GestionProduit/src/interfaces/ReclamationInterface.java</file>
+            <file>file:/C:/Users/Dali/Documents/NetBeansProjects/GestionProduit/src/gui/testA.java</file>
+            <file>file:/C:/Users/Dali/Documents/NetBeansProjects/GestionProduit/src/services/afficherProduitbyId.java</file>
+            <file>file:/C:/Users/Dali/Documents/NetBeansProjects/GestionProduit/src/controller/AjoutProduitController.java</file>
+            <file>file:/C:/Users/Dali/Documents/NetBeansProjects/GestionProduit/src/controller/ItemController.java</file>
+            <file>file:/C:/Users/Dali/Documents/NetBeansProjects/GestionProduit/src/gui/testC.java</file>
+            <file>file:/C:/Users/Dali/Documents/NetBeansProjects/GestionProduit/src/gui/test.java</file>
+            <file>file:/C:/Users/Dali/Documents/NetBeansProjects/GestionProduit/src/services/afficherReclamationbyId.java</file>
+            <file>file:/C:/Users/Dali/Documents/NetBeansProjects/GestionProduit/src/services/ProduitService.java</file>
+            <file>file:/C:/Users/Dali/Documents/NetBeansProjects/GestionProduit/src/controller/AjoutReclamationController.java</file>
+            <file>file:/C:/Users/Dali/Documents/NetBeansProjects/GestionProduit/src/models/Produit.java</file>
+            <file>file:/C:/Users/Dali/Documents/NetBeansProjects/GestionProduit/src/gui/ModifierProduit.fxml</file>
+            <file>file:/C:/Users/Dali/Documents/NetBeansProjects/GestionProduit/src/controller/ModifierReclamationController.java</file>
+            <file>file:/C:/Users/Dali/Documents/NetBeansProjects/GestionProduit/src/services/ReclamationService.java</file>
+        </group>
+    </open-files>
+</project-private>
