@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ModifierEventController">
+   <children>
+      <ImageView fitHeight="438.0" fitWidth="714.0">
+         <image>
+            <Image url="@1.jbeg.jpg" />
+         </image>
+      </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dfbd94" height="438.0" opacity="0.52" stroke="#f7d4a3" strokeType="INSIDE" width="220.0" />
+      <TextField fx:id="lieu" layoutX="26.0" layoutY="92.0" promptText="modifier le lieu" />
+      <TextField fx:id="capacite" layoutX="28.0" layoutY="149.0" promptText="modifier la capacité" />
+      <Text layoutX="26.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lieu de l'évènement:" />
+      <Text layoutX="25.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Capacité de l'évènement:" />
+      <TextArea fx:id="description" layoutX="23.0" layoutY="250.0" prefHeight="107.0" prefWidth="158.0" promptText="modifier la description" />
+      <DatePicker fx:id="date" layoutX="30.0" layoutY="195.0" prefHeight="26.0" prefWidth="150.0" promptText="modifier la date" />
+      <Text layoutX="28.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date de l'évènement:" />
+      <Text layoutX="25.0" layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description de l'évènement:" />
+      <Text layoutX="235.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Les détails de l'évènement" />
+      <Button fx:id="updateEvent" layoutX="429.0" layoutY="373.0" mnemonicParsing="false" onMouseClicked="#updateEvenement" prefHeight="26.0" prefWidth="109.0" text="Modifier" />
+      <TableView fx:id="EventDetailsTable" layoutX="235.0" layoutY="162.0" prefHeight="200.0" prefWidth="454.0">
+        <columns>
+          <TableColumn fx:id="nomTF" prefWidth="81.5999755859375" text="Nom" />
+          <TableColumn fx:id="lieuTF" prefWidth="97.60003662109375" text="Lieu" />
+            <TableColumn fx:id="capTF" prefWidth="82.39996337890625" text="Capacité" />
+            <TableColumn fx:id="dateTF" prefWidth="81.5999755859375" text="Date" />
+            <TableColumn fx:id="descTF" prefWidth="112.0" text="Description" />
+        </columns>
+      </TableView>
+      <TextField fx:id="nom" layoutX="235.0" layoutY="80.0" prefHeight="26.0" prefWidth="194.0" promptText="Nom de l'évènement" />
+      <Text layoutX="235.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom de l'évènement" />
+      <Button fx:id="deleteEventBT" layoutX="548.0" layoutY="373.0" mnemonicParsing="false" onMouseClicked="#deleteEvenement" text="supprimer évènement" />
+      <Button fx:id="getEvent" layoutX="452.0" layoutY="80.0" mnemonicParsing="false" onMouseClicked="#getEvenementsByNom" prefHeight="26.0" prefWidth="109.0" text="Afficher évènement" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="806.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.DisplayEncheresController">
+   <children>
+      <ImageView fitHeight="400.0" fitWidth="806.0">
+         <image>
+            <Image url="@1.jbeg.jpg" />
+         </image>
+      </ImageView>
+      <Button fx:id="miser" layoutX="625.0" layoutY="335.0" mnemonicParsing="false" onMouseClicked="#placerMise" text="Placer un mise" />
+      <ListView fx:id="EnchereDetailsList" layoutX="31.0" layoutY="43.0" onMouseClicked="#selectedEnchere" prefHeight="281.0" prefWidth="734.0" />
+   </children>
+</AnchorPane>

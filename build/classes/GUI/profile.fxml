@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="507.0" prefWidth="1091.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ProfileController">
+   <children>
+      <ImageView fitHeight="507.0" fitWidth="978.0" layoutX="193.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@image/b.jpg" />
+         </image>
+      </ImageView>
+      <VBox layoutX="194.0" prefHeight="507.0" prefWidth="200.0" style="-fx-background-color: #a03031;" />
+      <Label layoutX="510.0" layoutY="150.0" prefHeight="31.0" prefWidth="74.0" text="Nom :" textFill="#a03031">
+         <font>
+            <Font name="Arial Black" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="510.0" layoutY="231.0" prefHeight="18.0" prefWidth="74.0" text="Prenom :" textFill="#a03031">
+         <font>
+            <Font name="Arial Black" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="506.0" layoutY="301.0" prefHeight="23.0" prefWidth="104.0" text="Telephone:" textFill="#a03031">
+         <font>
+            <Font name="Arial Black" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="510.0" layoutY="361.0" prefHeight="26.0" prefWidth="104.0" text="Adresse :" textFill="#a03031">
+         <font>
+            <Font name="Arial Black" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="644.0" layoutY="85.0" prefHeight="18.0" prefWidth="281.0" text="Mon Profil" textFill="#a03031">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Label>
+      <Text fx:id="nom" layoutX="745.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Text fx:id="prenom" layoutX="745.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Text fx:id="telephone" layoutX="745.0" layoutY="317.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Text fx:id="adresse" layoutX="745.0" layoutY="379.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <VBox alignment="CENTER" layoutX="-5.0" layoutY="-6.0" prefHeight="514.0" prefWidth="200.0" style="-fx-background-color: #611a20;">
+         <children>
+            <Button graphicTextGap="35.0" mnemonicParsing="false" onAction="#GoUser" prefHeight="46.0" prefWidth="211.0" style="-fx-background-color: #491319;" text="User" textFill="WHITE" />
+            <Button graphicTextGap="35.0" mnemonicParsing="false" onAction="#GoProduit" prefHeight="46.0" prefWidth="216.0" style="-fx-background-color: #491319;" text="Produit" textFill="WHITE" />
+            <Button graphicTextGap="35.0" mnemonicParsing="false" onAction="#GoExpertise" prefHeight="46.0" prefWidth="244.0" style="-fx-background-color: #491319;" text="Expertise" textFill="WHITE" />
+            <Button graphicTextGap="35.0" mnemonicParsing="false" onAction="#GoEvenement" prefHeight="46.0" prefWidth="230.0" style="-fx-background-color: #491319;" text="Événement" textFill="WHITE" />
+            <Button graphicTextGap="15.0" mnemonicParsing="false" onAction="#GoEnchere" prefHeight="46.0" prefWidth="237.0" style="-fx-background-color: #491319;" text="Enchére" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS" />
+            <Button graphicTextGap="15.0" mnemonicParsing="false" onAction="#GoBlog" prefHeight="46.0" prefWidth="208.0" style="-fx-background-color: #491319;" text="Blog" textFill="WHITE" />
+            <Button graphicTextGap="35.0" mnemonicParsing="false" onAction="#GoPanier" prefHeight="46.0" prefWidth="247.0" style="-fx-background-color: #491319;" text="Panier" textFill="WHITE" />
+            <Button graphicTextGap="35.0" mnemonicParsing="false" onAction="#GoLivraison" prefHeight="46.0" prefWidth="223.0" style="-fx-background-color: #491319;" text="Livraison" textFill="WHITE" />
+            <Button contentDisplay="CENTER" graphicTextGap="15.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#GoAvis" prefHeight="46.0" prefWidth="265.0" style="-fx-background-color: #491319;" text="Avis" textFill="WHITE" textOverrun="CENTER_ELLIPSIS" />
+            <Button graphicTextGap="15.0" mnemonicParsing="false" onAction="#GoReclamation" prefHeight="46.0" prefWidth="267.0" style="-fx-background-color: #491319;" text="Réclamation" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="419.0" prefWidth="741.0" style="-fx-background-color: #933939;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.FXMLModifierCreateController">
+   <children>
+      <ImageView fitHeight="567.0" fitWidth="763.0" layoutX="-22.0" layoutY="-6.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@image/b.jpg" />
+         </image>
+      </ImageView>
+      <TextField fx:id="tf_nom" layoutX="204.0" layoutY="98.0" prefHeight="26.0" prefWidth="158.0" promptText="Nom" style="-fx-background-color: #a03031;" />
+      <TextField fx:id="tf_prenom" layoutX="368.0" layoutY="98.0" prefHeight="26.0" prefWidth="151.0" promptText="Prenom" style="-fx-background-color: #a03031;" />
+      <TextField fx:id="tf_email" layoutX="203.0" layoutY="137.0" prefHeight="26.0" prefWidth="315.0" promptText="Email" style="-fx-background-color: #a03031;" />
+      <TextField fx:id="tf_telephone" layoutX="202.0" layoutY="175.0" prefHeight="26.0" prefWidth="315.0" promptText="Telephone" style="-fx-background-color: #a03031;" />
+      <TextField fx:id="tf_adresse" layoutX="202.0" layoutY="214.0" prefHeight="26.0" prefWidth="315.0" promptText="Adresse" style="-fx-background-color: #a03031;" />
+      <Text fill="#46211d" layoutX="325.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Antika" textAlignment="CENTER">
+         <font>
+            <Font name="Lucida Bright" size="24.0" />
+         </font>
+      </Text>
+      <ChoiceBox fx:id="choice_box" layoutX="202.0" layoutY="249.0" prefHeight="28.0" prefWidth="151.0" style="-fx-background-color: #a03031;" />
+      <Text fill="#b7b7b7" layoutX="297.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type" />
+      <PasswordField fx:id="tf_motedepasse" layoutX="204.0" layoutY="290.0" prefHeight="30.0" prefWidth="158.0" promptText="Mot de passe" style="-fx-background-color: #a03031;" />
+      <Text fx:id="erreur" fill="RED" layoutX="310.0" layoutY="350.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="106.78306007385254">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Text>
+      <Button layoutX="417.0" layoutY="353.0" mnemonicParsing="false" onAction="#btn_revenirlogin" style="-fx-background-color: d1a88e;" text="Revenir login" textFill="#6e2424" />
+      <PasswordField fx:id="tf_confirmermotdepasse" layoutX="371.0" layoutY="290.0" prefHeight="30.0" prefWidth="158.0" promptText="Confirmer Mot de passe" style="-fx-background-color: #a03031;" />
+      <ImageView fx:id="imageView" fitHeight="87.0" fitWidth="107.0" layoutX="73.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true" />
+      <Button layoutX="82.0" layoutY="214.0" mnemonicParsing="false" onMouseClicked="#btn_insert_image" style="-fx-background-color: #a03031;" text="Inserer image" />
+      <Button layoutX="266.0" layoutY="353.0" mnemonicParsing="false" onAction="#btn_modifier" style="-fx-background-color: d1a88e;" text="Modifier" textFill="#6e2424" />
+      <TextField fx:id="id" layoutX="214.0" layoutY="108.0" opacity="0.0" prefHeight="26.0" prefWidth="158.0" promptText="Nom" style="-fx-background-color: #a03031;" />
+   </children>
+</AnchorPane>

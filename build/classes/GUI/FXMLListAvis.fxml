@@ -5,18 +5,33 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FXMLListAvisController">
+<AnchorPane id="AnchorPane" nodeOrientation="LEFT_TO_RIGHT" prefHeight="416.0" prefWidth="899.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.FXMLListAvisController">
    <children>
-      <ImageView fitHeight="413.0" fitWidth="715.0" focusTraversable="true" layoutX="-7.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="416.0" fitWidth="744.0" focusTraversable="true" layoutX="162.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@image/b.jpg" />
          </image>
       </ImageView>
-      <ListView fx:id="lview" editable="true" fixedCellSize="50.0" layoutX="133.0" layoutY="78.0" opacity="0.56" prefHeight="181.0" prefWidth="415.0" style="-fx-background-color: #c8a888;" />
-      <Button layoutX="199.0" layoutY="272.0" mnemonicParsing="false" onMouseClicked="#btn_supprimer" style="-fx-background-color: #611a20;" text="Supprimer" textFill="WHITE" />
-      <Button layoutX="382.0" layoutY="271.0" mnemonicParsing="false" onMouseClicked="#btn_ajouter" prefHeight="26.0" prefWidth="71.0" style="-fx-background-color: #611a20;" text="Ajouter" textFill="WHITE" />
-      <Text fx:id="info" fill="RED" layoutX="317.0" layoutY="341.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <ListView fx:id="lview" editable="true" fixedCellSize="50.0" layoutX="298.0" layoutY="78.0" opacity="0.56" prefHeight="181.0" prefWidth="415.0" style="-fx-background-color: #c8a888;" />
+      <Button layoutX="364.0" layoutY="272.0" mnemonicParsing="false" onMouseClicked="#btn_supprimer" style="-fx-background-color: #611a20;" text="Supprimer" textFill="WHITE" />
+      <Button layoutX="547.0" layoutY="271.0" mnemonicParsing="false" onMouseClicked="#btn_ajouter" prefHeight="26.0" prefWidth="71.0" style="-fx-background-color: #611a20;" text="Ajouter" textFill="WHITE" />
+      <Text fx:id="info" fill="RED" layoutX="482.0" layoutY="341.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <VBox alignment="CENTER" layoutY="-1.0" prefHeight="416.0" prefWidth="165.0" style="-fx-background-color: #611a20;">
+         <children>
+            <Button graphicTextGap="35.0" mnemonicParsing="false" onAction="#GoUser" prefHeight="46.0" prefWidth="173.0" style="-fx-background-color: #491319;" text="User" textFill="WHITE" />
+            <Button graphicTextGap="35.0" mnemonicParsing="false" onAction="#GoProduit" prefHeight="46.0" prefWidth="173.0" style="-fx-background-color: #491319;" text="Produit" textFill="WHITE" />
+            <Button graphicTextGap="35.0" mnemonicParsing="false" onAction="#GoExpertise" prefHeight="46.0" prefWidth="173.0" style="-fx-background-color: #491319;" text="Expertise" textFill="WHITE" />
+            <Button graphicTextGap="35.0" mnemonicParsing="false" onAction="#GoEvenement" prefHeight="46.0" prefWidth="173.0" style="-fx-background-color: #491319;" text="Événement" textFill="WHITE" />
+            <Button graphicTextGap="15.0" mnemonicParsing="false" onAction="#GoEnchere" prefHeight="46.0" prefWidth="177.0" style="-fx-background-color: #491319;" text="Enchére" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS" />
+            <Button graphicTextGap="15.0" mnemonicParsing="false" onAction="#GoBlog" prefHeight="46.0" prefWidth="171.0" style="-fx-background-color: #491319;" text="Blog" textFill="WHITE" />
+            <Button graphicTextGap="35.0" mnemonicParsing="false" onAction="#GoPanier" prefHeight="46.0" prefWidth="173.0" style="-fx-background-color: #491319;" text="Panier" textFill="WHITE" />
+            <Button graphicTextGap="35.0" mnemonicParsing="false" onAction="#GoLivraison" prefHeight="46.0" prefWidth="173.0" style="-fx-background-color: #491319;" text="Livraison" textFill="WHITE" />
+            <Button contentDisplay="CENTER" graphicTextGap="15.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#GoAvis" prefHeight="46.0" prefWidth="168.0" style="-fx-background-color: #491319;" text="Avis" textFill="WHITE" textOverrun="CENTER_ELLIPSIS" />
+            <Button graphicTextGap="15.0" mnemonicParsing="false" onAction="#GoReclamation" prefHeight="46.0" prefWidth="177.0" style="-fx-background-color: #491319;" text="Réclamation" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS" />
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

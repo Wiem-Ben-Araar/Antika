@@ -12,5 +12,5 @@ import Models.User;
  * @author wiemb
  */
 public interface MyListener {
-     public void onClickListener(User user);
+     public void onClickListener(User u);
 }

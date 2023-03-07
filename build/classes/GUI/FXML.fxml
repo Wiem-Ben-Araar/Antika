@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #46211d;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FXMLController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #46211d;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.FXMLController">
    <children>
       <ImageView fitHeight="470.0" fitWidth="714.0" opacity="0.36" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -28,5 +28,6 @@
       </Text>
       <PasswordField fx:id="tf_motdepasse" layoutX="188.0" layoutY="188.0" opacity="0.5" promptText="Mot de passe" />
       <Hyperlink layoutX="410.0" layoutY="214.0" onAction="#motdepasseoublié" text="Mot de passe oubilié?" textFill="#3e1b1b" />
+      <Button layoutX="304.0" layoutY="345.0" mnemonicParsing="false" onAction="#WelcomePage" prefHeight="30.0" prefWidth="106.0" style="-fx-background-color: #d1a88e;" text="Accueil" textAlignment="CENTER" textOverrun="CENTER_WORD_ELLIPSIS" />
    </children>
 </AnchorPane>

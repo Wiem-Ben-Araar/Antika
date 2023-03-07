@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Pagination?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import org.controlsfx.control.Rating?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="644.0" prefWidth="1003.0" styleClass="anchor-bar" stylesheets="@../values/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MarketProduitController">
+   <children>
+      <BorderPane layoutX="200.0" prefHeight="644.0" prefWidth="691.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <left>
+            <VBox prefHeight="758.0" prefWidth="440.0" styleClass="right-bar" stylesheets="@../values/style.css" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="112.0" prefWidth="443.0">
+                     <children>
+                        <Button alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#ajout" opacity="0.6" prefHeight="26.0" prefWidth="101.0" styleClass="search-box" stylesheets="@../values/style.css" text="Ajouter" />
+                        <Button alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#update" opacity="0.6" prefHeight="26.0" prefWidth="101.0" styleClass="search-box" stylesheets="@../values/style.css" text="Actualiser" />
+                     </children>
+                  </HBox>
+                  <VBox fx:id="chosenFruitCard" alignment="TOP_CENTER" prefHeight="542.0" prefWidth="405.0" stylesheets="@../values/style.css">
+                     <VBox.margin>
+                        <Insets left="50.0" right="50.0" />
+                     </VBox.margin>
+                     <styleClass>
+                        <String fx:value="chosen-fruit-card" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                     <children>
+                        <Button fx:id="Modifier" alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#modif" opacity="0.6" prefHeight="26.0" prefWidth="101.0" styleClass="search-box" stylesheets="@../values/style.css" text="Modifier" translateY="10.0" />
+                        <ImageView fx:id="imgtf" fitHeight="150.0" fitWidth="200.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" translateY="30.0">
+                           <viewport>
+                              <Rectangle2D />
+                           </viewport>
+                        </ImageView>
+                        <Label fx:id="id" opacity="0.0" text="Label" textFill="#50e000" />
+                        <Button mnemonicParsing="false" onAction="#ajoutr" opacity="0.73" text="Ajouter Reclamation" translateX="-100.0" translateY="210.0" />
+                        <Rating fx:id="note" disable="true" prefHeight="14.0" prefWidth="150.0" translateY="215.0" />
+                        <Button layoutX="119.0" layoutY="203.0" mnemonicParsing="false" onAction="#affichr" opacity="0.73" text="Afficher Reclamation" translateX="100.0" translateY="155.0" />
+                     </children>
+                  </VBox>
+                  <Pagination fx:id="pagination" prefHeight="200.0" prefWidth="200.0" />
+               </children>
+            </VBox>
+         </left>
+         <center>
+            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox prefHeight="100.0" prefWidth="200.0" styleClass="bar" stylesheets="@../values/style.css">
+                     <children>
+                        <Pane prefHeight="84.0" prefWidth="96.0" />
+                        <Pane prefHeight="100.0" prefWidth="784.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <TextField fx:id="find" layoutX="3.0" layoutY="37.0" prefHeight="25.0" prefWidth="202.0" styleClass="search-box" stylesheets="@../values/style.css" />
+                              <Pane layoutX="212.0" layoutY="7.0" prefHeight="84.0" prefWidth="96.0">
+                                 <children>
+                                    <Button layoutX="5.0" layoutY="30.0" mnemonicParsing="false" onAction="#chercher" prefHeight="25.0" prefWidth="86.0" styleClass="search-button" stylesheets="@../values/style.css" text="Search" textFill="WHITE" />
+                                 </children>
+                              </Pane>
+                           </children></Pane>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="20.0" right="20.0" top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <ScrollPane fx:id="scroll" prefHeight="600.0" prefWidth="758.0" styleClass="scroll-bar" stylesheets="@../values/style.css">
+                           <content>
+                              <GridPane fx:id="grid" prefHeight="0.0" prefWidth="0.0">
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                                 </rowConstraints>
+                              </GridPane>
+                           </content>
+                           <HBox.margin>
+                              <Insets top="10.0" />
+                           </HBox.margin>
+                        </ScrollPane>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
+      <Label fx:id="prixtf" layoutX="475.0" layoutY="340.0" prefHeight="30.0" prefWidth="158.0" text="Label" textFill="WHITE" translateY="20.0">
+         <font>
+            <Font name="Cambria" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="genretf" layoutX="473.0" layoutY="250.0" text="Label" textFill="WHITE" translateY="20.0">
+         <font>
+            <Font name="Cambria" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="nomtf" layoutX="473.0" layoutY="296.0" text="Label" textFill="WHITE" translateY="20.0">
+         <font>
+            <Font name="Cambria" size="24.0" />
+         </font>
+      </Label>
+      
+                                                            <Button fx:id="supprimer" layoutX="369.0" layoutY="573.0" mnemonicParsing="false" onAction="#supprimer" opacity="0.67" prefHeight="26.0" prefWidth="101.0" styleClass="search-box" stylesheets="@../values/style.css" text="Supprimer" />
+      <Label layoutX="278.0" layoutY="250.0" text="Nom du Produit : " textFill="WHITE" translateX="10.0" translateY="20.0">
+         <font>
+            <Font name="Cambria" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="278.0" layoutY="296.0" text="Catégorie : " textFill="WHITE" translateX="10.0" translateY="20.0">
+         <font>
+            <Font name="Cambria" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="278.0" layoutY="340.0" text="Prix :" textFill="WHITE" translateX="10.0" translateY="20.0">
+         <font>
+            <Font name="Cambria" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="idr" layoutX="483.0" layoutY="306.0" opacity="0.0" text="Label" textFill="WHITE">
+         <font>
+            <Font name="Cambria" size="24.0" />
+         </font>
+      </Label>
+      <VBox alignment="CENTER" layoutX="-4.0" layoutY="-6.0" prefHeight="651.0" prefWidth="208.0" style="-fx-background-color: #611a20;">
+         <children>
+            <Button graphicTextGap="35.0" mnemonicParsing="false" onAction="#GoUser" prefHeight="46.0" prefWidth="252.0" style="-fx-background-color: #491319;" text="User" textFill="WHITE" />
+            <Button graphicTextGap="35.0" mnemonicParsing="false" onAction="#GoProduit" prefHeight="46.0" prefWidth="219.0" style="-fx-background-color: #491319;" text="Produit" textFill="WHITE" />
+            <Button graphicTextGap="35.0" mnemonicParsing="false" onAction="#GoExpertise" prefHeight="46.0" prefWidth="223.0" style="-fx-background-color: #491319;" text="Expertise" textFill="WHITE" />
+            <Button graphicTextGap="35.0" mnemonicParsing="false" onAction="#GoEvenement" prefHeight="46.0" prefWidth="244.0" style="-fx-background-color: #491319;" text="Événement" textFill="WHITE" />
+            <Button graphicTextGap="15.0" mnemonicParsing="false" onAction="#GoEnchere" prefHeight="46.0" prefWidth="225.0" style="-fx-background-color: #491319;" text="Enchére" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS" />
+            <Button graphicTextGap="15.0" mnemonicParsing="false" onAction="#GoBlog" prefHeight="46.0" prefWidth="278.0" style="-fx-background-color: #491319;" text="Blog" textFill="WHITE" />
+            <Button graphicTextGap="35.0" mnemonicParsing="false" onAction="#GoPanier" prefHeight="46.0" prefWidth="231.0" style="-fx-background-color: #491319;" text="Panier" textFill="WHITE" />
+            <Button graphicTextGap="35.0" mnemonicParsing="false" onAction="#GoLivraison" prefHeight="46.0" prefWidth="225.0" style="-fx-background-color: #491319;" text="Livraison" textFill="WHITE" />
+            <Button contentDisplay="CENTER" graphicTextGap="15.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#GoAvis" prefHeight="46.0" prefWidth="218.0" style="-fx-background-color: #491319;" text="Avis" textFill="WHITE" textOverrun="CENTER_ELLIPSIS" />
+            <Button graphicTextGap="15.0" mnemonicParsing="false" onAction="#GoReclamation" prefHeight="46.0" prefWidth="217.0" style="-fx-background-color: #491319;" text="Réclamation" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS" />
+         </children>
+      </VBox>
+      <Button layoutX="350.0" layoutY="537.0" mnemonicParsing="false" onAction="#AjoutProduitPanier" opacity="0.67" prefHeight="26.0" prefWidth="139.0" styleClass="search-box" stylesheets="@../values/style.css" text="Ajouter au panier" />
+      <Label fx:id="nbrprod" layoutX="476.0" layoutY="399.0" prefHeight="30.0" prefWidth="158.0" text="Label" textFill="WHITE">
+         <font>
+            <Font name="Cambria" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="288.0" layoutY="399.0" text="Dans les panier :" textFill="WHITE">
+         <font>
+            <Font name="Cambria" size="20.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

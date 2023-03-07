@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="412.0" prefWidth="872.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AjoutLivraisonController">
+   <children>
+      <ImageView fitHeight="414.0" fitWidth="730.0" layoutX="165.0" layoutY="-1.0">
+         <image>
+            <Image url="@332849602_1356528631764202_695479529596603280_n.jpg" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="165.0" layoutY="354.0" prefHeight="45.0" prefWidth="707.0" />
+      <ListView fx:id="listview" layoutX="277.0" layoutY="92.0" prefHeight="208.0" prefWidth="280.0" />
+      <Text fx:id="error" fill="WHITE" layoutX="395.0" layoutY="336.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="216.5367431640625" />
+      <Text layoutX="285.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Produit" />
+      <Text layoutX="373.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prix" />
+      <Text layoutX="420.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantité" />
+      <Text layoutX="490.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total" />
+      <Button layoutX="625.0" layoutY="242.0" mnemonicParsing="false" onMouseClicked="#AjoutLivraison" prefHeight="31.0" prefWidth="110.0" style="-fx-background-color: #611a20;" text="Commander" textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <TextField fx:id="adresse" layoutX="606.0" layoutY="91.0" />
+      <DatePicker fx:id="datelivraison" layoutX="605.0" layoutY="169.0" prefHeight="26.0" prefWidth="150.0" />
+      <Text layoutX="609.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adresse :" />
+      <Text layoutX="607.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date livraison :" />
+      <VBox alignment="CENTER" layoutY="-2.0" prefHeight="416.0" prefWidth="165.0" style="-fx-background-color: #611a20;">
+         <children>
+            <Button graphicTextGap="35.0" mnemonicParsing="false" onAction="#GoUser" prefHeight="46.0" prefWidth="173.0" style="-fx-background-color: #491319;" text="User" textFill="WHITE" />
+            <Button graphicTextGap="35.0" mnemonicParsing="false" onAction="#GoProduit" prefHeight="46.0" prefWidth="173.0" style="-fx-background-color: #491319;" text="Produit" textFill="WHITE" />
+            <Button graphicTextGap="35.0" mnemonicParsing="false" onAction="#GoExpertise" prefHeight="46.0" prefWidth="173.0" style="-fx-background-color: #491319;" text="Expertise" textFill="WHITE" />
+            <Button graphicTextGap="35.0" mnemonicParsing="false" onAction="#GoEvenement" prefHeight="46.0" prefWidth="173.0" style="-fx-background-color: #491319;" text="Événement" textFill="WHITE" />
+            <Button graphicTextGap="15.0" mnemonicParsing="false" onAction="#GoEnchere" prefHeight="46.0" prefWidth="177.0" style="-fx-background-color: #491319;" text="Enchére" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS" />
+            <Button graphicTextGap="15.0" mnemonicParsing="false" onAction="#GoBlog" prefHeight="46.0" prefWidth="171.0" style="-fx-background-color: #491319;" text="Blog" textFill="WHITE" />
+            <Button graphicTextGap="35.0" mnemonicParsing="false" onAction="#GoPanier" prefHeight="46.0" prefWidth="173.0" style="-fx-background-color: #491319;" text="Panier" textFill="WHITE" />
+            <Button graphicTextGap="35.0" mnemonicParsing="false" onAction="#GoLivraison" prefHeight="46.0" prefWidth="173.0" style="-fx-background-color: #491319;" text="Livraison" textFill="WHITE" />
+            <Button contentDisplay="CENTER" graphicTextGap="15.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#GoAvis" prefHeight="46.0" prefWidth="168.0" style="-fx-background-color: #491319;" text="Avis" textFill="WHITE" textOverrun="CENTER_ELLIPSIS" />
+            <Button graphicTextGap="15.0" mnemonicParsing="false" onAction="#GoReclamation" prefHeight="46.0" prefWidth="177.0" style="-fx-background-color: #491319;" text="Réclamation" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

@@ -15,17 +15,18 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="930.0" prefWidth="1546.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.MarketController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="859.0" prefWidth="1546.0" stylesheets="@../values/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MarketController">
    <children>
-      <ImageView fitHeight="1014.0" fitWidth="1772.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="889.0" fitWidth="1531.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@image/b.jpg" />
          </image>
       </ImageView>
-      <BorderPane layoutX="6.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane layoutX="6.0" prefHeight="862.0" prefWidth="1411.0" AnchorPane.bottomAnchor="68.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="135.0" AnchorPane.topAnchor="0.0">
          <left>
-            <VBox prefHeight="738.0" prefWidth="510.0" styleClass="right-bar" stylesheets="@../values/style.css" BorderPane.alignment="CENTER">
+            <VBox prefHeight="805.0" prefWidth="511.0" styleClass="right-bar" stylesheets="@../values/style.css" BorderPane.alignment="CENTER">
                <children>
                   <HBox alignment="CENTER" prefHeight="110.0" prefWidth="200.0">
                      <children>
@@ -35,38 +36,41 @@
                            </font>
                         </Label>
                      </children></HBox>
-                  <VBox fx:id="chosenFruitCard" alignment="CENTER" prefHeight="656.0" prefWidth="335.0" style="-fx-background-color: d1a88e;" styleClass="shadow" stylesheets="@../values/style.css">
+                  <VBox fx:id="chosenFruitCard" alignment="CENTER" prefHeight="635.0" prefWidth="411.0" style="-fx-background-color: d1a88e;" styleClass="shadow" stylesheets="@../values/style.css">
                      <VBox.margin>
                         <Insets left="50.0" right="50.0" />
                      </VBox.margin>
+                     <children>
+                        <Label fx:id="id" opacity="0.0" text="Label" textFill="WHITE">
+                           <font>
+                              <Font name="Cambria" size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
                   </VBox>
                </children>
             </VBox>
          </left>
          <center>
-            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+            <VBox prefHeight="930.0" prefWidth="1029.0" BorderPane.alignment="CENTER">
                <children>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
                         <Pane prefHeight="84.0" prefWidth="96.0" />
                         <Pane prefHeight="84.0" prefWidth="96.0" HBox.hgrow="ALWAYS">
                            <children>
-                              <TextField fx:id="nomField" alignment="CENTER" layoutX="411.0" layoutY="14.0" opacity="0.6" prefHeight="25.0" prefWidth="202.0" promptText="Ecrire ici pour rechercher " styleClass="search-box" stylesheets="@../values/style.css" />
-                              <Button layoutX="627.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#btn_recherche" prefHeight="25.0" prefWidth="86.0" style="-fx-background-color: #a03031;" text="Recherche" textFill="WHITE" />
+                              <TextField fx:id="nomField" alignment="CENTER" layoutX="346.0" layoutY="14.0" opacity="0.6" prefHeight="25.0" prefWidth="202.0" promptText="Ecrire ici pour rechercher " styleClass="search-box" stylesheets="@../values/style.css" />
+                              <Button layoutX="562.0" layoutY="14.0" mnemonicParsing="false" onAction="#btn_recherche" prefHeight="25.0" prefWidth="86.0" style="-fx-background-color: #a03031;" text="Recherche" textFill="WHITE" />
                            </children></Pane>
-                        <Pane prefHeight="84.0" prefWidth="96.0">
-                           <children>
-                              <Button fx:id="profile" layoutX="-58.0" layoutY="50.0" mnemonicParsing="false" onAction="#profile" prefHeight="26.0" prefWidth="154.0" style="-fx-background-color: #a03031;" text="Mon profile" textFill="WHITE" />
-                           </children>
-                        </Pane>
+                        <Pane prefHeight="84.0" prefWidth="96.0" />
                      </children>
                      <VBox.margin>
                         <Insets left="20.0" right="20.0" top="10.0" />
                      </VBox.margin>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="634.0" prefWidth="1036.0" VBox.vgrow="ALWAYS">
+                  <HBox alignment="CENTER" prefHeight="736.0" prefWidth="901.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <ScrollPane fx:id="scrollPane" opacity="0.67" prefHeight="626.0" prefWidth="800.0" styleClass="transparent" stylesheets="@../values/style.css">
+                        <ScrollPane fx:id="scrollPane" opacity="0.67" prefHeight="786.0" prefWidth="619.0" styleClass="transparent" stylesheets="@../values/style.css">
                            <content>
                               <GridPane fx:id="grid" prefHeight="0.0" prefWidth="0.0">
                                  <rowConstraints>
@@ -84,46 +88,61 @@
             </VBox>
          </center>
       </BorderPane>
-      <Label fx:id="prenom" layoutX="250.0" layoutY="500.0" prefHeight="30.0" prefWidth="158.0" text="Label" textFill="WHITE">
+      <Label fx:id="prenom" layoutX="250.0" layoutY="418.0" prefHeight="30.0" prefWidth="158.0" text="Label" textFill="WHITE">
          <font>
             <Font name="Cambria" size="24.0" />
          </font>
       </Label>
-      <Label fx:id="nom" layoutX="250.0" layoutY="400.0" text="Label" textFill="WHITE">
+      <Label fx:id="nom" layoutX="250.0" layoutY="318.0" text="Label" textFill="WHITE">
          <font>
             <Font name="Cambria" size="24.0" />
          </font>
       </Label>
-      <Label fx:id="adresse" layoutX="250.0" layoutY="600.0" prefHeight="30.0" prefWidth="326.0" text="Label" textFill="WHITE">
+      <Label fx:id="adresse" layoutX="250.0" layoutY="518.0" prefHeight="30.0" prefWidth="326.0" text="Label" textFill="WHITE">
          <font>
             <Font name="Cambria" size="24.0" />
          </font>
       </Label>
-      <Label fx:id="email" layoutX="250.0" layoutY="700.0" text="Label" textFill="WHITE">
+      <Label fx:id="email" layoutX="250.0" layoutY="618.0" text="Label" textFill="WHITE">
          <font>
             <Font name="Cambria" size="24.0" />
          </font>
       </Label>
-      <Button fx:id="supprimer" layoutX="200.0" layoutY="800.0" mnemonicParsing="false" onAction="#supprimer" prefHeight="26.0" prefWidth="101.0" style="-fx-background-color: #a03031;" text="Supprimer" />
-      <Label layoutX="100.0" layoutY="400.0" text="Nom" textFill="WHITE">
+      <Label layoutX="100.0" layoutY="318.0" text="Nom" textFill="WHITE">
          <font>
             <Font name="Cambria" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="100.0" layoutY="500.0" text="Prenom" textFill="WHITE">
+      <Label layoutX="100.0" layoutY="418.0" text="Prenom" textFill="WHITE">
          <font>
             <Font name="Cambria" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="100.0" layoutY="600.0" text="Adresse" textFill="WHITE">
+      <Label layoutX="100.0" layoutY="518.0" text="Adresse" textFill="WHITE">
          <font>
             <Font name="Cambria" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="100.0" layoutY="700.0" text="Email" textFill="WHITE">
+      <Label layoutX="100.0" layoutY="618.0" text="Email" textFill="WHITE">
          <font>
             <Font name="Cambria" size="20.0" />
          </font>
       </Label>
+      <VBox alignment="CENTER" layoutX="1325.0" layoutY="-14.0" prefHeight="875.0" prefWidth="221.0" style="-fx-background-color: #611a20;">
+         <children>
+            <Button graphicTextGap="35.0" mnemonicParsing="false" onAction="#GoUser" prefHeight="46.0" prefWidth="248.0" style="-fx-background-color: #491319;" text="User" textFill="WHITE" />
+            <Button graphicTextGap="35.0" mnemonicParsing="false" onAction="#GoProduit" prefHeight="46.0" prefWidth="340.0" style="-fx-background-color: #491319;" text="Produit" textFill="WHITE" />
+            <Button graphicTextGap="35.0" mnemonicParsing="false" onAction="#GoExpertise" prefHeight="46.0" prefWidth="334.0" style="-fx-background-color: #491319;" text="Expertise" textFill="WHITE" />
+            <Button graphicTextGap="35.0" mnemonicParsing="false" onAction="#GoEvenement" prefHeight="46.0" prefWidth="324.0" style="-fx-background-color: #491319;" text="Événement" textFill="WHITE" />
+            <Button graphicTextGap="15.0" mnemonicParsing="false" onAction="#GoEnchere" prefHeight="46.0" prefWidth="256.0" style="-fx-background-color: #491319;" text="Enchére" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS" />
+            <Button graphicTextGap="15.0" mnemonicParsing="false" onAction="#GoBlog" prefHeight="46.0" prefWidth="281.0" style="-fx-background-color: #491319;" text="Blog" textFill="WHITE" />
+            <Button graphicTextGap="35.0" mnemonicParsing="false" onAction="#GoPanier" prefHeight="46.0" prefWidth="270.0" style="-fx-background-color: #491319;" text="Panier" textFill="WHITE" />
+            <Button graphicTextGap="35.0" mnemonicParsing="false" onAction="#GoLivraison" prefHeight="46.0" prefWidth="230.0" style="-fx-background-color: #491319;" text="Livraison" textFill="WHITE" />
+            <Button contentDisplay="CENTER" graphicTextGap="15.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#GoAvis" prefHeight="46.0" prefWidth="251.0" style="-fx-background-color: #491319;" text="Avis" textFill="WHITE" textOverrun="CENTER_ELLIPSIS" />
+            <Button graphicTextGap="15.0" mnemonicParsing="false" onAction="#GoReclamation" prefHeight="46.0" prefWidth="250.0" style="-fx-background-color: #491319;" text="Réclamation" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS" />
+         </children>
+      </VBox>
+      <Button fx:id="supprimer" layoutX="211.0" layoutY="759.0" mnemonicParsing="false" onAction="#supprimer" prefHeight="26.0" prefWidth="101.0" style="-fx-background-color: #a03031;" text="Supprimer" />
+      <Text fx:id="error" fill="WHITE" layoutX="668.0" layoutY="824.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="243.13671875" />
    </children>
 </AnchorPane>

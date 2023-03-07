@@ -29,6 +29,7 @@ import java.util.logging.Logger;
 public class UserService implements UserInterface {
     Connection cnx = MaConnexion.getInstance().getCnx();
     AvisService ps=new AvisService();
+    public static User currentUser;
 
    
 @Override
@@ -64,8 +65,6 @@ public class UserService implements UserInterface {
 
 @Override
 public void ajouterUser2(User p) {
-    String hashedPassword = hashPassword(p.getMot_de_passe());
-    String hashedConfirmerPassword = hashPassword(p.getConfirmer_motdepasse());
 
     String req = "INSERT INTO `user`(`nom`, `prenom`, `email` ,`telephone`,`adresse`,`type`,`mot_de_passe`,`confirmer_motdepasse`,`image`) VALUES ( ?, ?, ?, ?, ?, ?, ?,?,?)";
     try (PreparedStatement ps = cnx.prepareStatement(req)) {
@@ -75,8 +74,8 @@ public void ajouterUser2(User p) {
         ps.setString(4, p.getTelephone());
         ps.setString(5, p.getAdresse());
         ps.setString(6, p.getType().toString());
-        ps.setString(7, hashedPassword);
-        ps.setString(8, hashedConfirmerPassword);
+        ps.setString(7, p.getMot_de_passe());
+        ps.setString(8, p.getMot_de_passe());
         ps.setBytes(9, p.getImage());
         ps.executeUpdate();
         System.out.println("User ajouté avec succès!!");
@@ -88,7 +87,7 @@ public void ajouterUser2(User p) {
     @Override
     public void modifierUser(int id, User p) {
        try{
-             String req ="UPDATE `user` SET `nom`=?,`prenom`=?,`email`=?,`telephone`=?,`adresse`=?,`type`=?,`mot_de_passe`=?,`confirmer_motdepasse`=?,`image`=?,`id_avis`=? WHERE id_user='"+id+"'";
+             String req ="UPDATE `user` SET `nom`=?,`prenom`=?,`email`=?,`telephone`=?,`adresse`=?,`type`=?,`mot_de_passe`=?,`confirmer_motdepasse`=?,`image`=?,`id_avis`=? WHERE id_user="+id;
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setString(1, p.getNom());
             ps.setString(2, p.getPrenom());
@@ -97,9 +96,10 @@ public void ajouterUser2(User p) {
             ps.setString(5, p.getAdresse());
             ps.setString(6, p.getType().toString());
             ps.setString(7, p.getMot_de_passe());
-            ps.setString(8, p.getConfirmer_motdepasse());
+            ps.setString(8, p.getMot_de_passe());
             ps.setBytes(9, p.getImage());
-            ps.setInt(9, p.getAvis().getId_avis());
+            ps.setInt(10, p.getAvis().getId_avis());
+            System.out.println(ps.toString());
             ps.executeUpdate();
             System.out.println("Utlisateur est modifié");
             } catch (SQLException ex) {

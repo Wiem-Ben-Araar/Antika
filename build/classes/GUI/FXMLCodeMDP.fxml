@@ -7,7 +7,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FXMLCodeMDPController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.FXMLCodeMDPController">
    <children>
       <ImageView fitHeight="483.0" fitWidth="824.0" layoutX="-24.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -16,8 +16,8 @@
       </ImageView>
       <Label fx:id="emailLabel" layoutX="83.0" layoutY="115.0" text="Adresse e-mail :" />
       <TextField fx:id="emailField" layoutX="370.0" layoutY="111.0" />
-      <Button layoutX="457.0" layoutY="168.0" mnemonicParsing="false" onMouseClicked="#SendCodeButton" style="-fx-background-color: #611a20; Scene ConnexionPageScene =new Scene(ConnexionPage): ; Stage appStage =(Stage)((Node)event.getSource()).getScene().getWindow(): ; appStage.setScene(ConnexionPageScene): ; appStage.show(): ;" text="Envoyer le code" />
+      <Button layoutX="457.0" layoutY="168.0" mnemonicParsing="false" onMouseClicked="#SendCodeButton" style="-fx-background-color: #611a20; " text="Envoyer le code" />
       <Label fx:id="statusLabel" layoutX="141.0" layoutY="274.0" />
-      <Button layoutX="437.0" layoutY="225.0" mnemonicParsing="false" onMouseClicked="#ModifierMotDePasse" style="-fx-background-color: #611a20; Scene ConnexionPageScene =new Scene(ConnexionPage): ; Stage appStage =(Stage)((Node)event.getSource()).getScene().getWindow(): ; appStage.setScene(ConnexionPageScene): ; appStage.show(): ;" text="Modifier mot de passe" />
+      <Button layoutX="437.0" layoutY="225.0" mnemonicParsing="false" onMouseClicked="#ModifierMotDePasse" style="-fx-background-color: #611a20; ;" text="Modifier mot de passe" />
    </children>
 </AnchorPane>

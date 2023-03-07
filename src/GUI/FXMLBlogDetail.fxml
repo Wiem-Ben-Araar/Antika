@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="337.0" prefWidth="605.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.FXMLBlogDetailController">
+   <children>
+      <ImageView fitHeight="416.0" fitWidth="754.0" layoutX="163.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@1.jbeg.jpg" />
+         </image>
+      </ImageView>
+      <VBox layoutX="239.0" layoutY="50.0" prefHeight="342.0" prefWidth="215.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="87.0" prefWidth="215.0">
+               <children>
+                  <Label text="Detail">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <VBox fx:id="chosenBlog" prefHeight="240.0" prefWidth="202.0">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets left="20.0" right="20.0" />
+               </VBox.margin>
+               <children>
+                  <HBox prefHeight="41.0" prefWidth="175.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="41.0" prefWidth="94.0" text="Titre :" textFill="WHITE" />
+                        <Label fx:id="titre" alignment="CENTER" contentDisplay="CENTER" prefHeight="41.0" prefWidth="104.0" text="Titre " textFill="WHITE" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="41.0" prefWidth="175.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="41.0" prefWidth="94.0" text="Artiste :" textFill="WHITE" />
+                        <Label fx:id="artiste" alignment="CENTER" contentDisplay="CENTER" prefHeight="41.0" prefWidth="104.0" text="Artiste" textFill="WHITE" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="41.0" prefWidth="175.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="41.0" prefWidth="94.0" text="Date :" textFill="WHITE" />
+                        <Label fx:id="date" alignment="CENTER" contentDisplay="CENTER" prefHeight="41.0" prefWidth="104.0" text="Date" textFill="WHITE" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="41.0" prefWidth="175.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="41.0" prefWidth="94.0" text="Etiquette :" textFill="WHITE" />
+                        <Label fx:id="etiquette" alignment="CENTER" contentDisplay="CENTER" prefHeight="41.0" prefWidth="104.0" text="Etiquette" textFill="WHITE" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+      <VBox layoutX="459.0" layoutY="50.0" prefHeight="341.0" prefWidth="385.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="57.0" prefWidth="385.0">
+               <children>
+                  <Label text="Blog" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <ScrollPane fx:id="scroll" prefHeight="213.0" prefWidth="385.0" style="-fx-background: c9a889; -fx-border-color: c9a889;">
+               <content>
+                  <GridPane fx:id="grid" prefHeight="5.0" prefWidth="18.0">
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                     </rowConstraints>
+                  </GridPane>
+               </content>
+            </ScrollPane>
+            <HBox alignment="CENTER" prefHeight="72.0" prefWidth="385.0">
+               <children>
+                  <Button mnemonicParsing="false" onMouseClicked="#Commentaire" prefHeight="25.0" prefWidth="95.0" style="-fx-background-color: c9a889;" text="Commentaire" textFill="WHITE" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox alignment="CENTER" layoutX="-2.0" prefHeight="416.0" prefWidth="165.0" style="-fx-background-color: #611a20;">
+         <children>
+            <Button graphicTextGap="35.0" mnemonicParsing="false" onAction="#GoUser" prefHeight="46.0" prefWidth="173.0" style="-fx-background-color: #491319;" text="User" textFill="WHITE" />
+            <Button graphicTextGap="35.0" mnemonicParsing="false" onAction="#GoProduit" prefHeight="46.0" prefWidth="173.0" style="-fx-background-color: #491319;" text="Produit" textFill="WHITE" />
+            <Button graphicTextGap="35.0" mnemonicParsing="false" onAction="#GoExpertise" prefHeight="46.0" prefWidth="173.0" style="-fx-background-color: #491319;" text="Expertise" textFill="WHITE" />
+            <Button graphicTextGap="35.0" mnemonicParsing="false" onAction="#GoEvenement" prefHeight="46.0" prefWidth="173.0" style="-fx-background-color: #491319;" text="Événement" textFill="WHITE" />
+            <Button graphicTextGap="15.0" mnemonicParsing="false" onAction="#GoEnchere" prefHeight="46.0" prefWidth="177.0" style="-fx-background-color: #491319;" text="Enchére" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS" />
+            <Button graphicTextGap="15.0" mnemonicParsing="false" onAction="#GoBlog" prefHeight="46.0" prefWidth="171.0" style="-fx-background-color: #491319;" text="Blog" textFill="WHITE" />
+            <Button graphicTextGap="35.0" mnemonicParsing="false" onAction="#GoPanier" prefHeight="46.0" prefWidth="173.0" style="-fx-background-color: #491319;" text="Panier" textFill="WHITE" />
+            <Button graphicTextGap="35.0" mnemonicParsing="false" onAction="#GoLivraison" prefHeight="46.0" prefWidth="173.0" style="-fx-background-color: #491319;" text="Livraison" textFill="WHITE" />
+            <Button contentDisplay="CENTER" graphicTextGap="15.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#GoAvis" prefHeight="46.0" prefWidth="168.0" style="-fx-background-color: #491319;" text="Avis" textFill="WHITE" textOverrun="CENTER_ELLIPSIS" />
+            <Button graphicTextGap="15.0" mnemonicParsing="false" onAction="#GoReclamation" prefHeight="46.0" prefWidth="177.0" style="-fx-background-color: #491319;" text="Réclamation" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
