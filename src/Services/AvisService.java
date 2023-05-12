@@ -9,7 +9,6 @@ import Interfaces.AvisInterface;
 import Models.Avis;
 import Models.User;
 import Utilities.MaConnexion;
-import Utilities.Type;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -59,7 +58,7 @@ Connection cnx = MaConnexion.getInstance().getCnx();
     @Override
     public void supprimerAvis(int id) {
        Avis avis = new Avis();
-        String request = "DELETE FROM `avis` WHERE `id_avis` ="+id+";";
+        String request = "DELETE FROM `avis` WHERE `id` ="+id+";";
         try {
             Statement st = cnx.createStatement();
             st.executeUpdate(request);

@@ -6,7 +6,6 @@ package Controller;
 
 import Models.User;
 import Services.UserService;
-import Utilities.Type;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;

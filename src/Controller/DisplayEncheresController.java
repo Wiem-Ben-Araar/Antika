@@ -11,7 +11,6 @@ import Models.User;
 import Services.EnchereService;
 import Services.EvenementService;
 import Services.UserService;
-import Utilities.Type;
 import java.awt.Color;
 import java.awt.Rectangle;
 import java.io.IOException;

@@ -72,7 +72,7 @@ List<Blog> list = new ArrayList<>();
             ste = conn.createStatement();
             rs = ste.executeQuery(req);
             while (rs.next()) {
-                list.add(new Blog(rs.getInt("id_blog"), rs.getString("titre"),artisteService.GetArtiste(rs.getInt("artiste")) , rs.getDate("date_publication"), rs.getString("contenu"),rs.getString("etiquette")));
+                list.add(new Blog(rs.getInt("id"), rs.getString("titre"),artisteService.GetArtiste(rs.getInt("artiste")) , rs.getString("contenu"),rs.getString("etiquette")));
             }
         } catch (SQLException ex) {
             Logger.getLogger(BlogService.class.getName()).log(Level.SEVERE, null, ex);
@@ -87,7 +87,7 @@ List<Blog> list = new ArrayList<>();
             ste = conn.createStatement();
             rs = ste.executeQuery(req);
             while (rs.next()) {
-                list.add(new Blog(rs.getInt("id_blog"), rs.getString("titre"), artisteService.GetArtiste(rs.getInt("artiste")), rs.getDate("date_publication"), rs.getString("contenu"),rs.getString("etiquette")));
+                list.add(new Blog(rs.getInt("id"), rs.getString("titre"), artisteService.GetArtiste(rs.getInt("artiste")),  rs.getString("contenu"),rs.getString("etiquette")));
             }
         } catch (SQLException ex) {
             Logger.getLogger(BlogService.class.getName()).log(Level.SEVERE, null, ex);
@@ -98,12 +98,12 @@ List<Blog> list = new ArrayList<>();
     @Override
     public Blog getBlogById(int id_blog) {
   Blog b = new Blog();
-        String req = "select * from blog WHERE id_blog='" + id_blog + "'";  
+        String req = "select * from blog WHERE id='" + id_blog + "'";  
      try {
             ste = conn.createStatement();
             rs = ste.executeQuery(req);
             rs.next();
-            b = new Blog(rs.getInt("id_blog"), rs.getString("titre"),artisteService.GetArtiste(rs.getInt("artiste")), rs.getDate("date_publication"), rs.getString("contenu"), rs.getString("etiquette"));
+            b = new Blog(rs.getInt("id"), rs.getString("titre"),artisteService.GetArtiste(rs.getInt("artiste")), rs.getString("contenu"), rs.getString("etiquette"));
         } catch (SQLException ex) {
             Logger.getLogger(BlogService.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -132,7 +132,7 @@ List<Blog> list = new ArrayList<>();
             ste = conn.createStatement();
             rs = ste.executeQuery(req);
             while (rs.next()) {
-                list.add(new Blog(rs.getInt("id_blog"), rs.getString("titre"), artisteService.GetArtiste(rs.getInt("artiste")), rs.getDate("date_publication"), rs.getString("contenu"), rs.getString("etiquette")));
+                list.add(new Blog(rs.getInt("id_blog"), rs.getString("titre"), artisteService.GetArtiste(rs.getInt("artiste")), rs.getString("contenu"), rs.getString("etiquette")));
             }
         } catch (SQLException ex) {
             Logger.getLogger(BlogService.class.getName()).log(Level.SEVERE, null, ex);

@@ -66,11 +66,10 @@ public class FXMLExpertiseController implements Initializable {
     @FXML
     private void AjoutExpertise(MouseEvent event) {
         notif.setText("");
-        if(produit.getSelectionModel().getSelectedItem()!=null && artiste.getSelectionModel().getSelectedItem()!=null 
-                && !prixestime.getText().isEmpty() && !condition.getText().isEmpty() && date.getValue() != null){
+        if(produit.getSelectionModel().getSelectedItem()!=null && !prixestime.getText().isEmpty() && !condition.getText().isEmpty() && date.getValue() != null){
             Date date1 = new Date(Date.valueOf(date.getValue()).getTime());
             Expertise expertise = new Expertise(produit.getSelectionModel().getSelectedItem()
-                    , artiste.getSelectionModel().getSelectedItem(),Float.parseFloat(prixestime.getText()) , condition.getText(), date1);
+                    , artiste.getSelectionModel().getSelectedItem(),Float.parseFloat(prixestime.getText()) , condition.getText());
             expertiseService.AjouterExpertise(expertise);
             notif.setText("Expertise ajouté");
         }

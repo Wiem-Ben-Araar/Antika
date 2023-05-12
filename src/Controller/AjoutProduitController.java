@@ -83,23 +83,9 @@ public class AjoutProduitController implements Initializable {
         }
     }
         
-    private byte[] imageToString(Image image) throws IOException 
-    {
-        // Convert the Image to a BufferedImage
-        javafx.scene.image.Image fxImage = image;
-        java.awt.image.BufferedImage awtImage = SwingFXUtils.fromFXImage(fxImage, null);
-
-        // Convert the BufferedImage to a byte array
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        ImageIO.write(awtImage, "jpg", baos);
-        byte[] Blobs = baos.toByteArray();
-
-        return Blobs;
-    }
      @FXML
     private void AjouterProduit(ActionEvent event) throws IOException
     { 
-        byte[] imageData = imageToString(imageView.getImage());
         if ( nomTF.getText().isEmpty() || genreTF.getText().isEmpty() || prixTF.getText().isEmpty())
         {
 
@@ -116,7 +102,7 @@ public class AjoutProduitController implements Initializable {
         p.setNom(nomTF.getText());
         p.setGenre(genreTF.getText());
         p.setPrix(Float.parseFloat(prixTF.getText()));
-        p.setImg(imageData);
+        //p.setImg(imageView.getImage());
         System.out.println("image convertit");
         ps.addProduit(p);
         }

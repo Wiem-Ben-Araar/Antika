@@ -109,13 +109,13 @@ public class MarketProduitController implements Initializable {
         prixtf.setText(Float.toString(fruit.getPrix()));
         id.setText(Integer.toString(fruit.getId()));
         nbrprod.setText(Integer.toString(gs.nmbrProduitPanier(fruit.getId())));
-        byte[] blobData = /* your blob data here */ fruit.getImg();
+        String blobData = /* your blob data here */ fruit.getImg();
         // Convert blob data to input stream
-        InputStream is = new ByteArrayInputStream(blobData);
+        //InputStream is = new ByteArrayInputStream(blobData);
         // Create an Image object from input stream
-        Image image = new Image(is);
+        //Image image = new Image(is);
         // Create an ImageView object and set its content to the Image object
-        imgtf.setImage(image);
+        //imgtf.setImage(image);
         a = Integer.valueOf(id.getText());
     }
    

@@ -5,7 +5,6 @@
  */
 package Models;
 
-import Utilities.Type;
 
 /**
  *
@@ -13,73 +12,55 @@ import Utilities.Type;
  */
 public class User {
     
-    private int id_user;
+    private int id;
     private String nom;
     private String prenom;
     private String email;
     private String telephone;
     private String adresse;
-    private Type type;
-    private String mot_de_passe;
-    private String confirmer_motdepasse;
-    private byte[] image;
+    private String roles;
+    private String password;
     private Avis avis;
 
-    public User(int id_user, String nom, String prenom, String email, String telephone, String adresse, Type type, String mot_de_passe, String confirmer_motdepasse, byte[] image, Avis avis) {
-        this.id_user = id_user;
+    public User(int id, String nom, String prenom, String email, String telephone, String adresse, String roles, String password, Avis avis) {
+        this.id = id;
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
         this.telephone = telephone;
         this.adresse = adresse;
-        this.type = type;
-        this.mot_de_passe = mot_de_passe;
-        this.confirmer_motdepasse = confirmer_motdepasse;
-        this.image = image;
+        this.roles = roles;
+        this.password = password;
         this.avis = avis;
     }
 
-    public User(String nom, String prenom, String email, String telephone, String adresse, Type type, String mot_de_passe, String confirmer_motdepasse, byte[] image, Avis avis) {
+    public User(String nom, String prenom, String email, String telephone, String adresse, String roles, String password,Avis avis) {
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
         this.telephone = telephone;
         this.adresse = adresse;
-        this.type = type;
-        this.mot_de_passe = mot_de_passe;
-        this.confirmer_motdepasse = confirmer_motdepasse;
-        this.image = image;
+        this.roles = roles;
+        this.password = password;
         this.avis = avis;
     }
 
-    public User(String nom, String prenom, String email, String telephone, String adresse, Type type, String mot_de_passe, String confirmer_motdepasse, byte[] image) {
+    public User(String nom, String prenom, String email, String telephone, String adresse, String roles, String password) {
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
         this.telephone = telephone;
         this.adresse = adresse;
-        this.type = type;
-        this.mot_de_passe = mot_de_passe;
-        this.confirmer_motdepasse = confirmer_motdepasse;
-        this.image = image;
+        this.roles = roles;
+        this.password = password;
     }
 
-    public User(String nom, String prenom, String email, String telephone, String adresse, Type type, String mot_de_passe, String confirmer_motdepasse) {
-        this.nom = nom;
-        this.prenom = prenom;
-        this.email = email;
-        this.telephone = telephone;
-        this.adresse = adresse;
-        this.type = type;
-        this.mot_de_passe = mot_de_passe;
-        this.confirmer_motdepasse = confirmer_motdepasse;
-    }
 
     public User() {
     }
 
     public int getId_user() {
-        return id_user;
+        return id;
     }
 
     public String getNom() {
@@ -102,28 +83,21 @@ public class User {
         return adresse;
     }
 
-    public Type getType() {
-        return type;
+    public String getType() {
+        return roles;
     }
 
     public String getMot_de_passe() {
-        return mot_de_passe;
+        return password;
     }
 
-    public String getConfirmer_motdepasse() {
-        return confirmer_motdepasse;
-    }
-
-    public byte[] getImage() {
-        return image;
-    }
 
     public Avis getAvis() {
         return avis;
     }
 
     public void setId_user(int id_user) {
-        this.id_user = id_user;
+        this.id = id_user;
     }
 
     public void setNom(String nom) {
@@ -146,20 +120,12 @@ public class User {
         this.adresse = adresse;
     }
 
-    public void setType(Type type) {
-        this.type = type;
+    public void setType(String roles) {
+        this.roles = roles;
     }
 
     public void setMot_de_passe(String mot_de_passe) {
-        this.mot_de_passe = mot_de_passe;
-    }
-
-    public void setConfirmer_motdepasse(String confirmer_motdepasse) {
-        this.confirmer_motdepasse = confirmer_motdepasse;
-    }
-
-    public void setImage(byte[] image) {
-        this.image = image;
+        this.password = mot_de_passe;
     }
 
     public void setAvis(Avis avis) {
@@ -168,7 +134,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" + "id_user=" + id_user + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", telephone=" + telephone + ", adresse=" + adresse + ", type=" + type + ", mot_de_passe=" + mot_de_passe + ", confirmer_motdepasse=" + confirmer_motdepasse + ", image=" + image + ", avis=" + avis + '}';
+        return "User{" + "id_user=" + id+ ", nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", telephone=" + telephone + ", adresse=" + adresse + ", type=" + roles + ", mot_de_passe=" + password +'}';
     }
 
     

@@ -34,15 +34,15 @@ public class ItemProduitController {
         this.myListener = myListener;
         nameLabel.setText(fruit.getNom());
         priceLable.setText( Float.toString(fruit.getPrix()));
-        byte[] blobData = /* your blob data here */ fruit.getImg();
+        String blobData = /* your blob data here */ fruit.getImg();
 
         // Convert blob data to input stream
-        InputStream is = new ByteArrayInputStream(blobData);
+        //InputStream is = new ByteArrayInputStream(blobData);
 
         // Create an Image object from input stream
-        Image image = new Image(is);
+        //Image image = new Image(is);
 
         // Create an ImageView object and set its content to the Image object
-        img.setImage(image);
+        //img.setImage(image);
     }
 }

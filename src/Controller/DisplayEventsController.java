@@ -9,7 +9,6 @@ import Models.Evenement;
 import Models.User;
 import Services.EvenementService;
 import Services.UserService;
-import Utilities.Type;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;

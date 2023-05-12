@@ -7,7 +7,6 @@ package Controller;
 
 import Models.User;
 import Services.UserService;
-import Utilities.Type;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -109,12 +108,11 @@ public class FXMLModifierCreateController implements Initializable {
         u.setEmail(tf_email.getText());
         u.setTelephone(tf_telephone.getText());
         u.setMot_de_passe(tf_motedepasse.getText());
-        u.setConfirmer_motdepasse(tf_confirmermotdepasse.getText());
   
   // psd.modifierUser(u.getId(), u);
         
     }
-  void setTextField(String nom, String prenom, String email,String telephone,String adresse,String mot_de_passe,String confirmer_motdepasse) {
+  void setTextField(String nom, String prenom, String email,String telephone,String adresse,String mot_de_passe) {
 
         tf_nom.setText(nom);
         tf_prenom.setText(prenom);
@@ -122,7 +120,6 @@ public class FXMLModifierCreateController implements Initializable {
         tf_telephone.setText(telephone);
         tf_adresse.setText(adresse);
         tf_motedepasse.setText(mot_de_passe);
-       tf_confirmermotdepasse.setText (confirmer_motdepasse);
 
     }  
 }

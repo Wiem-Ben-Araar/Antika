@@ -17,36 +17,8 @@ public class Expertise {
     private Artiste id_artiste;
      private float prix_estimé ;
      private String condition_produit;
-    private Date date_expertise;
 
     public Expertise() {
-    }
-
-    public Expertise(Produit id_produit, Artiste id_artiste, float prix_estimé, String condition_produit, Date date_expertise) {
-        this.id_produit = id_produit;
-        this.id_artiste = id_artiste;
-        this.prix_estimé = prix_estimé;
-        this.condition_produit = condition_produit;
-        this.date_expertise = date_expertise;
-    }
-
-    public Expertise(float prix_estimé, String condition_produit, Date date_expertise) {
-        this.prix_estimé = prix_estimé;
-        this.condition_produit = condition_produit;
-        this.date_expertise = date_expertise;
-    }
-
-    public Expertise(int id_expert, Produit id_produit, Artiste id_artiste, float prix_estimé, String condition_produit, Date date_expertise) {
-        this.id_expert = id_expert;
-        this.id_produit = id_produit;
-        this.id_artiste = id_artiste;
-        this.prix_estimé = prix_estimé;
-        this.condition_produit = condition_produit;
-        this.date_expertise = date_expertise;
-    }
-
-    public Expertise(Produit id_produit) {
-        this.id_produit = id_produit;
     }
 
     public Expertise(Produit id_produit, Artiste id_artiste, float prix_estimé, String condition_produit) {
@@ -60,6 +32,19 @@ public class Expertise {
         this.prix_estimé = prix_estimé;
         this.condition_produit = condition_produit;
     }
+
+    public Expertise(int id_expert, Produit id_produit, Artiste id_artiste, float prix_estimé, String condition_produit) {
+        this.id_expert = id_expert;
+        this.id_produit = id_produit;
+        this.id_artiste = id_artiste;
+        this.prix_estimé = prix_estimé;
+        this.condition_produit = condition_produit;
+    }
+
+    public Expertise(Produit id_produit) {
+        this.id_produit = id_produit;
+    }
+
 
     
     public int getId_expert() {
@@ -102,13 +87,5 @@ public class Expertise {
         this.condition_produit = condition_produit;
     }
 
-    public Date getDate_expertise() {
-        return date_expertise;
-    }
-
-    public void setDate_expertise(Date date_expertise) {
-        this.date_expertise = date_expertise;
-    }
-    
     
 }

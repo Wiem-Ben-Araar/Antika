@@ -18,7 +18,7 @@ import java.sql.Statement;
 
 
 public class MaConnexion {
-    public String url="jdbc:mysql://localhost:3306/antika";
+    public String url="jdbc:mysql://localhost:3306/final";
     public String login="root";
     public String pwd="";
     public Connection cnx;

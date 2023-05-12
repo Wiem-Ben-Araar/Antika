@@ -16,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import Models.Produit;
 import Utilities.MaConnexion;
+import java.sql.ResultSetMetaData;
 
 /**
  *
@@ -29,13 +30,13 @@ public class ProduitService implements ProduitInterface{
     @Override
       public void addProduit(Produit p) {
 String req;
-     req = "INSERT INTO `produits`(`nom`, `genre`, `prix`, `img`) VALUES (?,?,?,?)";
+     req = "INSERT INTO `produits`(`nom`, `genre`, `prix`, `image`) VALUES (?,?,?,?)";
      try {
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setString(1, p.getNom());
             ps.setString(2, p.getGenre());
             ps.setFloat(3, p.getPrix());
-            ps.setBytes(4, p.getImg());
+            ps.setString(4, p.getImg());
             ps.executeUpdate();
             System.out.println("Produit ajouté avec success !");
         } catch (SQLException ex) {
@@ -53,19 +54,26 @@ String req;
             String req = "SELECT * FROM produits";
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
+            ResultSetMetaData rsmd = rs.getMetaData();
+            int columnCount = rsmd.getColumnCount();
+            for (int i = 1; i <= columnCount; i++) {
+                System.out.println(rsmd.getColumnName(i));
+            }
             while (rs.next()) {                
                 Produit p = new Produit();
                 p.setId(rs.getInt("Id"));
                 p.setNom(rs.getString("nom"));
                 p.setGenre(rs.getString("genre"));
                 p.setPrix(rs.getFloat("prix"));
-                p.setImg(rs.getBytes("img"));
+                p.setImg(rs.getString("image"));
                 produits.add(p);
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
         return produits;
+        
+
     }
     
     
@@ -74,13 +82,13 @@ String req;
       public void modifierProduit(Produit l, int x) {
 try {
             String req ; 
-            req = "UPDATE `produits` SET  `nom`=?,`genre`=?,`prix`=?, `img`=? WHERE Id='"+x+"'";
+            req = "UPDATE `produits` SET  `nom`=?,`genre`=?,`prix`=?, `image`=? WHERE Id='"+x+"'";
             PreparedStatement ps = cnx.prepareStatement(req);
            // ps.setInt(1, l.getId());
             ps.setString(1, l.getNom());
             ps.setString(2, l.getGenre());
             ps.setFloat(3, l.getPrix());
-            ps.setBytes(4, l.getImg());
+            ps.setString(4, l.getImg());
             
 
             ps.executeUpdate();
@@ -104,7 +112,7 @@ try {
                 l.setNom(rs.getString("nom"));
                 l.setGenre(rs.getString("genre"));
                 l.setPrix(rs.getFloat("prix"));
-                l.setImg(rs.getBytes("img"));
+                l.setImg(rs.getString("image"));
                 //
                 produits.add(l);
             }
@@ -167,7 +175,7 @@ try {
                 p.setNom(rs.getString("nom"));
                 p.setGenre(rs.getString("genre"));
                 p.setPrix(rs.getFloat("prix"));
-                p.setImg(rs.getBytes("img"));
+                p.setImg(rs.getString("image"));
                 System.out.println(p);
             }
         } catch (SQLException ex) {

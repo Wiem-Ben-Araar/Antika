@@ -35,7 +35,7 @@ public class ArtisteService {
             ste = conn.createStatement();
             rs = ste.executeQuery(req);
             while (rs.next()) {
-                list.add(new Artiste(rs.getInt("id_artiste"), rs.getString("nom")));
+                list.add(new Artiste(rs.getInt("id_artist"), rs.getString("nom")));
             }
         } catch (SQLException ex) {
             Logger.getLogger(ExpertiseService.class.getName()).log(Level.SEVERE, null, ex);
@@ -44,7 +44,7 @@ public class ArtisteService {
         return list;    } 
     public Artiste GetArtiste(int id_artiste) {
        Artiste artiste = new Artiste();
-        String req = " SELECT * FROM artiste where id_artiste ="+id_artiste;
+        String req = " SELECT * FROM artiste where id_artist ="+id_artiste;
         try {
             ste = conn.createStatement();
             rs = ste.executeQuery(req);

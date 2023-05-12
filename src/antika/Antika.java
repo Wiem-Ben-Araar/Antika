@@ -5,67 +5,36 @@
  */
 package antika;
 
-import Interfaces.UserInterface;
-import Models.Avis;
-import Models.User;
-import Services.AvisService;
-import Services.UserService;
-import Utilities.Type;
-import static java.util.Collections.list;
-import java.util.List;
+import javafx.application.Application;
+import static javafx.application.Application.launch;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 /**
  *
  * @author wiemb
  */
-public class Antika {
- public static void main(String[] args) {
+public class Antika extends Application {
       
-     
-        UserService ps = new UserService();
-        AvisService a = new AvisService();
-     
-         Avis as1 = new Avis("Bonne_idée",30);
-         Avis as5 = new Avis("Bonne_idée",50);
-      
-         Avis as2 = new Avis("Bravo",20);
-         as1.setId_avis(19);
-         as2.setId_avis(20);
-    // a.ajouterAvis(as2);
-    // a.ajouterAvis(as1);
-        User p1 = new User("dali", "Belhaj", "dali@esprit.tn", "56789457","Manzah",Type.CLIENT,"dali","dali",null,as1);  
-        User p2 = new User("Wided", "Ben Araar", "wiem.benaraar@esprit.tn", "90180310","La Sokra",Type.ADMINISTRATEUR,"doudouu","doudou",null,as2);
-       
-
-    ps.ajouterUser(p1); 
-     ps.ajouterUser(p2); 
-    // ps.modifierUser(28,p2);
-    // ps.FiltrerParNom("wided").forEach(System.out::println);
-    // ps.supprimerUser(10);
-     // ps.afficherUser().forEach(System.out::println); 
-     //System.out.println(ps.afficherUserbyID(1));
-     //ps.afficherUserbyID(1); 
-     // ps.RechercherUser("dali").forEach(System.out::println); 
-     
-     
-     //a.supprimerAvis(17);
-       
-     //a.modifierAvis(16, as1); 
-         
-    // a.afficherAvis().forEach(System.out::println); 
-       
-   //  a.FiltrerParId_avis(16).forEach(System.out::println); 
-     
-   // a.RechercherAvis(16).forEach(System.out::println); 
-       
-   //System.out.println(a.afficherAvisbyID(2));
-   // a.afficherAvisbyID(2);
-       
-    
-      
- 
-      
+    @Override
+    public void start(Stage stage) throws Exception {
+        FXMLLoader loader= new FXMLLoader(getClass().getResource("../GUI/FXMLListUser.fxml"));
+        Parent root= loader.load();
+        Scene scene= new Scene(root);
+        stage.setTitle("Panier");
+        stage.setScene(scene);
+        stage.show();
     }
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        launch(args);
+    }
+    
 }
  
  

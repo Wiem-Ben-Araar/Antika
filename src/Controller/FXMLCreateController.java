@@ -3,7 +3,6 @@ package Controller;
 import Models.User;
 import Services.UserService;
 import Utilities.MaConnexion;
-import Utilities.Type;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -57,12 +56,10 @@ public class FXMLCreateController implements Initializable {
     private TextField tf_motedepasse;
     @FXML
     private PasswordField tf_confirmermotdepasse;
-    @FXML
-    private ChoiceBox<String> choice_box;
+
         @FXML
     private Text erreur;
         private boolean status;
-    private ObservableList<String> drop_list = FXCollections.observableArrayList("ARTISTE","CLIENT");
     @FXML
     private ImageView imageView;
     @FXML
@@ -71,7 +68,6 @@ public class FXMLCreateController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        choice_box.setItems(drop_list);
         
     }
 
@@ -100,8 +96,7 @@ private void btn_créermoncompte(ActionEvent event) throws SQLException, IOExcep
     if (status) {
         erreur.setText("");
         User user = new User(tf_nom.getText(), tf_prenom.getText(), tf_email.getText(), tf_telephone.getText(),
-                tf_adresse.getText(), Type.valueOf(choice_box.getValue()), tf_motedepasse.getText(),
-                tf_confirmermotdepasse.getText());
+                tf_adresse.getText(), "ROLE_USER", tf_motedepasse.getText());
         us.ajouterUser2(user);
         System.out.println("User ajouté ");
           Parent  ConnexionPage =FXMLLoader.load(getClass().getResource("../GUI/FXMLWelcome.fxml"));
@@ -124,35 +119,6 @@ private void btn_créermoncompte(ActionEvent event) throws SQLException, IOExcep
     appStage.show();   
     }
 
-   @FXML
-private void btn_insert_image(MouseEvent event) {
-    FileChooser fileChooser = new FileChooser();
-    fileChooser.setTitle("Select Image");
-
-    // Set the initial directory
-    fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
-
-    // Set the default extension filter
-    fileChooser.setSelectedExtensionFilter(new FileChooser.ExtensionFilter("Image Files", ".png", ".jpg", "*.gif"));
-
-    // Show the dialog and wait for the user to select a file
-    File file = fileChooser.showOpenDialog(imageView.getScene().getWindow());
-
-    // If a file was selected, load it into the ImageView
-    if (file != null) {
-        try {
-            Image image = new Image(file.toURI().toString());
-            imageView.setImage(image);
-        } catch (Exception e) {
-            // Handle the case when the file is not an image or cannot be loaded
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText(null);
-            alert.setContentText("The selected file is not a valid image file.");
-            alert.showAndWait();
-        }
-    }
-}
 
     @FXML
     private void btn_modifier(ActionEvent event) {
@@ -165,7 +131,7 @@ private void btn_insert_image(MouseEvent event) {
         }
                             
                             FXMLModifierCreateController ModifierUserController = loader.getController();
-                            ModifierUserController.setTextField(tf_nom.getText(),tf_prenom.getText(),tf_email.getText(),tf_telephone.getText(),tf_adresse.getText(), tf_motedepasse.getText(),tf_confirmermotdepasse.getText());
+                            ModifierUserController.setTextField(tf_nom.getText(),tf_prenom.getText(),tf_email.getText(),tf_telephone.getText(),tf_adresse.getText(), tf_motedepasse.getText());
                             Parent parent = loader.getRoot();
                             Stage stage = new Stage();
                             stage.setScene(new Scene(parent));

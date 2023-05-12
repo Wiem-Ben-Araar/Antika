@@ -30,7 +30,7 @@ public class ReclamationService implements ReclamationInterface{
        public void addReclamation(Reclamation r) {
            Reclamation p = new Reclamation();
 String req;
-     req = "INSERT INTO `reclamations`(`description`, `email`, `date`,`Id`,`note`) VALUES (?,?,?,?,?)";
+     req = "INSERT INTO `reclamation`(`description`, `titre`, `date`,`state`,`response`) VALUES (?,?,?,?,?)";
      try {
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setString(1, r.getDescription());
@@ -57,7 +57,7 @@ String req;
      public void modifierReclamation(Reclamation l, int x) {
 try {
             String req ; 
-            req = "UPDATE `reclamations` SET `description`=?,`email`=?,`date`=?,`Id`=?, `note`=? WHERE id_reclamation='"+x+"'";
+            req = "UPDATE `reclamation` SET `description`=?,`email`=?,`date`=?,`Id`=?, `note`=? WHERE id='"+x+"'";
             PreparedStatement ps = cnx.prepareStatement(req);
            // ps.setInt(1, l.getId_Reclamation());
             ps.setString(1, l.getDescription());
@@ -78,7 +78,7 @@ try {
                public List<Reclamation> recherche(String desc) {
  List<Reclamation> Reclamations = new ArrayList<>();
         String request;
-       request = "SELECT * FROM reclamations WHERE description='"+desc+"'";
+       request = "SELECT * FROM reclamation WHERE description='"+desc+"'";
         try {
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(request);
@@ -104,7 +104,7 @@ try {
         List<Reclamation> Reclamation = new ArrayList<>();
         try {
             
-            String req = "SELECT * FROM reclamations";
+            String req = "SELECT * FROM reclamation";
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {                
@@ -113,9 +113,9 @@ try {
 
                 r.setId_Reclamation(rs.getInt(1));
                 r.setDescription(rs.getString("description"));
-                r.setEmail(rs.getString("email"));
+                r.setEmail(rs.getString("titre"));
                 r.setDate(rs.getDate("date"));
-                r.setId(rs.getInt("Id"));
+               // r.set(rs.getString("state"));
                 r.setNote(rs.getInt("note"));
 
                  
@@ -133,7 +133,7 @@ try {
 
     public void supprimerReclamation(int id_Reclamation) {
          Reclamation p = new Reclamation();
-        String request = "DELETE FROM reclamations WHERE Id = '"+id_Reclamation+"'";
+        String request = "DELETE FROM reclamation WHERE Id = '"+id_Reclamation+"'";
         try {
             Statement st = cnx.createStatement();
             st.executeUpdate(request);
@@ -146,7 +146,7 @@ try {
     
     public List<Reclamation> afficherReclamation() {
         List<Reclamation> Reclamations = new ArrayList<>();
-        String request = "SELECT * FROM reclamations";
+        String request = "SELECT * FROM reclamation";
         try {
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(request);
@@ -175,7 +175,7 @@ try {
     @Override
     public List<Reclamation> afficherReclamationbyId(int Id) {
                 List<Reclamation> Reclamation = new ArrayList<>();
-        String req = "SELECT * FROM reclamations WHERE `Id` ="+Id+";";
+        String req = "SELECT * FROM reclamation WHERE `Id` ="+Id+";";
         try {
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);

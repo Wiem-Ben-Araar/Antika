@@ -34,7 +34,7 @@ public class LivraisonService implements LivraisonInterface {
     @Override
     public void AjouterLivraison (Livraison p){
         double total =0;
-        String req="INSERT INTO livraison (id_user,adresse,statut,date_livraison,total) VALUES (?,?,?,?,?)";
+        String req="INSERT INTO livraison (user_id,adresse,date_livraison,statut,total) VALUES (?,?,?,?,?)";
         try{
             
             List<Panier> paniers = panierService.getPanier(user.getId_user());
@@ -42,8 +42,9 @@ public class LivraisonService implements LivraisonInterface {
                  PreparedStatement ps=cnx.prepareStatement(req);
         ps.setInt(1, user.getId_user());
         ps.setString(2, p.getAdresse());
-        ps.setString(3,p.getStatut());
-        ps.setDate(4, p.getDate_livraison());
+        ps.setDate(3, p.getDate_livraison());
+        ps.setString(4,p.getStatut());
+      
         for(Panier panier :paniers){
             
                 total = panier.getTotal()+total;
@@ -72,7 +73,7 @@ public class LivraisonService implements LivraisonInterface {
         
     try{
         String req;
-                req="UPDATE livraison SET adresse =? , statut=?, date_livraison=?,total= ?, id_user=? WHERE id_livraison ='"+x+"'";
+                req="UPDATE livraison SET adresse =? , statut=?, date_livraison=?,total= ?, user_id=? WHERE id ='"+x+"'";
                 PreparedStatement ps=cnx.prepareStatement(req);
                 ps.setString(1,p.getAdresse());
                 ps.setString(2,p.getStatut());
@@ -139,7 +140,7 @@ public class LivraisonService implements LivraisonInterface {
             l.setStatut(rs.getString("statut"));
             l.setDate_livraison(rs.getDate("date_livraison"));
             l.setAdresse(rs.getString("adresse"));
-            l.setUser(us.afficherUserbyID(rs.getInt("id_user")));
+            l.setUser(us.afficherUserbyID(rs.getInt("user_id")));
             livraisons.add(l);
             }
             }catch(SQLException ex){
@@ -152,7 +153,7 @@ public class LivraisonService implements LivraisonInterface {
     public List<Livraison> GetLivraison(int id_user){
         List<Livraison> livraisons=new ArrayList<Livraison>();
         String req;
-        req="SELECT * FROM livraison where id_user = "+id_user;
+        req="SELECT * FROM livraison where user_id = "+id_user;
         try {
             Statement st=cnx.createStatement();
             ResultSet rs=st.executeQuery(req);
@@ -163,7 +164,7 @@ public class LivraisonService implements LivraisonInterface {
             l.setStatut(rs.getString("statut"));
             l.setDate_livraison(rs.getDate("date_livraison"));
             l.setAdresse(rs.getString("adresse"));
-            l.setUser(us.afficherUserbyID(rs.getInt("id_user")));
+            l.setUser(us.afficherUserbyID(rs.getInt("user_id")));
             livraisons.add(l);
             }
             }catch(SQLException ex){

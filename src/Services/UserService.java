@@ -9,7 +9,6 @@ import Interfaces.UserInterface;
 import Models.User;
 import Models.Avis;
 import Utilities.MaConnexion;
-import Utilities.Type;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
@@ -34,7 +33,7 @@ public class UserService implements UserInterface {
    
 @Override
     public void ajouterUser(User p) {
-       String req = "INSERT INTO `user`(`nom`, `prenom`, `email` ,`telephone`,`adresse`,`type`,`mot_de_passe`,`confirmer_motdepasse`,`image`,`id_avis`) VALUES ('"+p.getNom()+"','"+p.getPrenom()+"','"+p.getEmail()+"','"+p.getTelephone()+"','"+p.getAdresse()+"','"+p.getType()+"','"+p.getMot_de_passe()+"','"+p.getConfirmer_motdepasse()+"','"+p.getImage()+"','"+p.getAvis().getId_avis()+"')";
+       String req = "INSERT INTO `user`(`nom`, `prenom`, `email` ,`telephone`,`adresse`,`roles`,`password`) VALUES ('"+p.getNom()+"','"+p.getPrenom()+"','"+p.getEmail()+"','"+p.getTelephone()+"','"+p.getAdresse()+"','"+p.getType()+"','"+p.getMot_de_passe()+"')";
         try {
             Statement st = cnx.createStatement();
             st.executeUpdate(req);
@@ -66,17 +65,16 @@ public class UserService implements UserInterface {
 @Override
 public void ajouterUser2(User p) {
 
-    String req = "INSERT INTO `user`(`nom`, `prenom`, `email` ,`telephone`,`adresse`,`type`,`mot_de_passe`,`confirmer_motdepasse`,`image`) VALUES ( ?, ?, ?, ?, ?, ?, ?,?,?)";
+    String req = "INSERT INTO `user`(`email`, `roles`, `password` ,`is_verified`,`nom`,`prenom`,`telephone`,`adresse`) VALUES ( ?, ?, ?, ?, ?, ?, ?,?)";
     try (PreparedStatement ps = cnx.prepareStatement(req)) {
-        ps.setString(1, p.getNom());
-        ps.setString(2, p.getPrenom());
-        ps.setString(3, p.getEmail());
-        ps.setString(4, p.getTelephone());
-        ps.setString(5, p.getAdresse());
-        ps.setString(6, p.getType().toString());
-        ps.setString(7, p.getMot_de_passe());
-        ps.setString(8, p.getMot_de_passe());
-        ps.setBytes(9, p.getImage());
+        ps.setString(1, p.getEmail());
+        ps.setString(2, p.getType());
+        ps.setString(3, p.getMot_de_passe());
+        ps.setInt(4, 0);
+        ps.setString(5, p.getNom());
+        ps.setString(6, p.getPrenom());
+        ps.setString(7, p.getTelephone());
+        ps.setString(8, p.getAdresse());
         ps.executeUpdate();
         System.out.println("User ajouté avec succès!!");
     } catch (SQLException ex) {
@@ -87,7 +85,7 @@ public void ajouterUser2(User p) {
     @Override
     public void modifierUser(int id, User p) {
        try{
-             String req ="UPDATE `user` SET `nom`=?,`prenom`=?,`email`=?,`telephone`=?,`adresse`=?,`type`=?,`mot_de_passe`=?,`confirmer_motdepasse`=?,`image`=?,`id_avis`=? WHERE id_user="+id;
+             String req ="UPDATE `user` SET `nom`=?,`prenom`=?,`email`=?,`telephone`=?,`adresse`=?,`roles`=?,`password`=? WHERE id="+id;
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setString(1, p.getNom());
             ps.setString(2, p.getPrenom());
@@ -96,9 +94,6 @@ public void ajouterUser2(User p) {
             ps.setString(5, p.getAdresse());
             ps.setString(6, p.getType().toString());
             ps.setString(7, p.getMot_de_passe());
-            ps.setString(8, p.getMot_de_passe());
-            ps.setBytes(9, p.getImage());
-            ps.setInt(10, p.getAvis().getId_avis());
             System.out.println(ps.toString());
             ps.executeUpdate();
             System.out.println("Utlisateur est modifié");
@@ -111,7 +106,7 @@ public void ajouterUser2(User p) {
     @Override
     public void supprimerUser(int id) {
          User p = new User();
-        String request = "DELETE FROM `user` WHERE `ID_User` ="+id+";";
+        String request = "DELETE FROM `user` WHERE `ID` ="+id+";";
         try {
             Statement st = cnx.createStatement();
             st.executeUpdate(request);
@@ -139,12 +134,9 @@ public void ajouterUser2(User p) {
                 
                 p.setTelephone(rs.getString("Telephone"));
                  p.setAdresse(rs.getString("Adresse"));
-                 System.out.println(rs.getString("Type"));
-                 p.setType(Type.valueOf(rs.getString("Type")));
-                 p.setMot_de_passe(rs.getString("Mot_de_passe"));
-                 p.setConfirmer_motdepasse(rs.getString("Confirmer_motdepasse"));
-                 p.setImage(rs.getBytes("Image"));
-                 p.setAvis(ps.afficherAvisbyID(rs.getInt("id_avis")));
+                 System.out.println(rs.getString("roles"));
+                 p.setType(rs.getString("roles"));
+                 p.setMot_de_passe(rs.getString("password"));
                 
                 personnes.add(p);
             }
@@ -158,7 +150,7 @@ public void ajouterUser2(User p) {
     @Override
     public User afficherUserbyID(int id_user) {
         User p = new User();
-        String request = "SELECT * FROM user WHERE `id_user` ="+id_user+";";
+        String request = "SELECT * FROM user WHERE `id` ="+id_user+";";
         try {
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(request);
@@ -169,11 +161,8 @@ public void ajouterUser2(User p) {
                 p.setEmail(rs.getString("email"));
                 p.setTelephone(rs.getString("telephone"));
                 p.setAdresse(rs.getString("adresse"));
-                p.setType(Type.valueOf(rs.getString("type")));
-                p.setMot_de_passe(rs.getString("mot_de_passe"));
-                p.setConfirmer_motdepasse(rs.getString("Confirmer_motdepasse"));
-                p.setImage(rs.getBytes("Image"));
-                p.setAvis(ps.afficherAvisbyID(rs.getInt("id_avis")));
+                p.setType(rs.getString("roles"));
+                p.setMot_de_passe(rs.getString("password"));
                 
             }
         } catch (SQLException ex) {
@@ -195,11 +184,8 @@ public void ajouterUser2(User p) {
                 p.setEmail(rs.getString("email"));
                 p.setTelephone(rs.getString("telephone"));
                 p.setAdresse(rs.getString("adresse"));
-                p.setType(Type.valueOf(rs.getString("type")));
-                p.setMot_de_passe(rs.getString("mot_de_passe"));
-                p.setConfirmer_motdepasse(rs.getString("Confirmer_motdepasse"));
-                p.setImage(rs.getBytes("Image"));
-                p.setAvis(ps.afficherAvisbyID(rs.getInt("id_avis")));
+                p.setType(rs.getString("roles"));
+                p.setMot_de_passe(rs.getString("password"));
                 
             }
         } catch (SQLException ex) {
@@ -223,10 +209,8 @@ public void ajouterUser2(User p) {
                 p.setEmail(rs.getString("Email"));
                 p.setTelephone(rs.getString("Telephone"));
                 p.setAdresse(rs.getString("Adresse"));
-                p.setType(Type.valueOf(rs.getString("Type")));
-                p.setMot_de_passe(rs.getString("Mot_de_passe"));
-                p.setConfirmer_motdepasse(rs.getString("Confirmer_motdepasse"));
-                p.setImage(rs.getBytes("Image"));
+                p.setType(rs.getString("Roles"));
+                p.setMot_de_passe(rs.getString("Password"));
                 
               
                 
@@ -253,12 +237,8 @@ public void ajouterUser2(User p) {
                 p.setEmail(rs.getString("Email"));
                 p.setTelephone(rs.getString("Telephone"));
                 p.setAdresse(rs.getString("Adresse"));
-                p.setType(Type.valueOf(rs.getString("Type")));
-                p.setMot_de_passe(rs.getString("Mot_de_passe"));
-                p.setConfirmer_motdepasse(rs.getString("Confirmer_motdepasse"));
-                p.setImage(rs.getBytes("Image"));
-                
-             
+                p.setType(rs.getString("Roles"));
+                p.setMot_de_passe(rs.getString("Password"));             
               
                 
                 personnes.add(p);

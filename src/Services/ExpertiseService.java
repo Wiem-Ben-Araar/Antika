@@ -36,7 +36,7 @@ public class ExpertiseService implements ExpertiseInterfaces {
     @Override
     public void AjouterExpertise(Expertise E) {
         try {
-             String req = "INSERT INTO `expertise`(`id_expertise`,`id_produit`,`id_artiste`,`prix_estime`,`condition_produit`,`date_expertise`) VALUES ('" + E.getId_expert() + "','" + E.getId_produit().getId() + "','" + E.getId_artiste().getId_artiste() + "','" + E.getPrix_estimé() + "','" + E.getCondition_produit() + "','" + E.getDate_expertise() + "')";
+             String req = "INSERT INTO `expertise`(`id_produit`,`id_artist`,`prix_estime`,`condition_produit`) VALUES ('" + E.getId_produit().getId() + "','" + E.getId_artiste().getId_artiste() + "','" + E.getPrix_estimé() + "','" + E.getCondition_produit() +  "')";
              ste = conn.createStatement();
              ste.executeUpdate(req);
               System.out.println("expertise Added successfully!");
@@ -46,7 +46,7 @@ public class ExpertiseService implements ExpertiseInterfaces {
     }
    
     public void ModifierExpertise(Expertise object,int id_expertise) {
-         String req = "UPDATE expertise SET prix_estime= "+ object.getPrix_estimé()+ " , condition_produit = '"+object.getCondition_produit()+"'  WHERE id_expertise="+id_expertise;
+         String req = "UPDATE expertise SET prix_estime= "+ object.getPrix_estimé()+ " , condition_produit = '"+object.getCondition_produit()+"'  WHERE id="+id_expertise;
      try {
             ste = conn.createStatement();
             ste.executeUpdate(req);
@@ -56,7 +56,7 @@ public class ExpertiseService implements ExpertiseInterfaces {
         }    }
     @Override
     public void SupprimerExpertise(int id_expert) {
-         String req = "DELETE FROM expertise WHERE id_expertise ='" + id_expert+ "'";
+         String req = "DELETE FROM expertise WHERE id ='" + id_expert+ "'";
         try {
             ste = conn.createStatement();
             ste.executeUpdate(req);
@@ -87,7 +87,7 @@ public class ExpertiseService implements ExpertiseInterfaces {
             ste = conn.createStatement();
             rs = ste.executeQuery(req);
             while (rs.next()) {
-                list.add(new Expertise(rs.getInt("id_expertise"),produitService.afficherProduitbyId(rs.getInt("id_produit")),artisteService.GetArtiste(rs.getInt("id_artiste")) ,rs.getFloat("prix_estime"),rs.getString("condition_produit"), rs.getDate("date_expertise")));
+                list.add(new Expertise(rs.getInt("id"),produitService.afficherProduitbyId(rs.getInt("id_produit")),artisteService.GetArtiste(rs.getInt("id_artist")) ,rs.getFloat("prix_estime"),rs.getString("condition_produit")));
             }
         } catch (SQLException ex) {
             Logger.getLogger(ExpertiseService.class.getName()).log(Level.SEVERE, null, ex);

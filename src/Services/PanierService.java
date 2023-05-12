@@ -35,11 +35,11 @@ public class PanierService implements PanierInterface {
    //  Produit produit2 = new Produit(2,20,"produit2");
 @Override
     public void ajouter(Panier p) {
-    String sql ="insert into panier (id_user,id_produit ,quantite ,total) values(?,?,?,?)" ;
+    String sql ="insert into panier (`produit_id`, `user_id`, `quantite`, `total`) values(?,?,?,?)" ;
         try {
             ste=mc.prepareStatement(sql);
-            ste.setInt(1, p.getUser().getId_user());
-            ste.setInt(2, p.getProduit().getId());
+            ste.setInt(1, p.getProduit().getId());
+            ste.setInt(2, 1);
             ste.setInt(3, p.getQuantite());
             ste.setDouble(4, p.getProduit().getPrix()*p.getQuantite());
             ste.executeUpdate();
@@ -55,7 +55,7 @@ public class PanierService implements PanierInterface {
             String req="SELECT * FROM `panier`";
             ResultSet resultat=st.executeQuery(req);
           while(resultat.next()){
-              Panier resultc = new Panier(resultat.getInt(1),resultat.getInt(2),resultat.getDouble(3),us.afficherUserbyID(resultat.getInt("id_user")),produitService.afficherProduitbyId(resultat.getInt("id_produit")));
+              Panier resultc = new Panier(resultat.getInt(1),resultat.getInt(2),resultat.getDouble(3),us.afficherUserbyID(resultat.getInt("user_id")),produitService.afficherProduitbyId(resultat.getInt("produit_id")));
               pers.add(resultc);
               
           }
@@ -69,10 +69,10 @@ public List<Panier> getPanier(int id_user) {
     List<Panier> pers=new ArrayList<Panier>();
          try {
              Statement st=mc.createStatement();
-             String req="SELECT * FROM `panier` where id_user ="+ id_user;
+             String req="SELECT * FROM `panier` where user_id ="+ id_user;
              ResultSet resultat=st.executeQuery(req);
              while(resultat.next()){
-                 Panier resultc = new Panier(resultat.getInt(1),resultat.getInt(2),resultat.getDouble(3),us.afficherUserbyID(resultat.getInt("id_user")),produitService.afficherProduitbyId(resultat.getInt("id_produit")));
+                 Panier resultc = new Panier(resultat.getInt(1),resultat.getInt(2),resultat.getDouble(3),us.afficherUserbyID(resultat.getInt("user_id")),produitService.afficherProduitbyId(resultat.getInt("produit_id")));
                  pers.add(resultc);
                  
                  
@@ -86,10 +86,10 @@ public Panier getPanierUserProduit(int id_user,int id_produit) {
     Panier panier=new Panier();
          try {
              Statement st=mc.createStatement();
-             String req="SELECT * FROM `panier` where id_user ="+ id_user+" AND id_produit ="+id_produit;
+             String req="SELECT * FROM `panier` where user_id ="+ id_user+" AND produit_id ="+id_produit;
              ResultSet resultat=st.executeQuery(req);
              while(resultat.next()){
-                  panier = new Panier(resultat.getInt(1),resultat.getInt(2),resultat.getDouble(3),us.afficherUserbyID(resultat.getInt("id_user")),produitService.afficherProduitbyId(resultat.getInt("id_produit")));
+                  panier = new Panier(resultat.getInt(1),resultat.getInt(2),resultat.getDouble(3),us.afficherUserbyID(resultat.getInt("user_id")),produitService.afficherProduitbyId(resultat.getInt("produit_id")));
                  
                  
              }        } catch (SQLException ex) {
@@ -101,7 +101,7 @@ return panier;
     @Override
     public void supprimerP(int id_panier) {
          try {
-             String deleteReq= "DELETE FROM panier WHERE id_panier=" +id_panier ;
+             String deleteReq= "DELETE FROM panier WHERE id=" +id_panier ;
              PreparedStatement deletePs=mc.prepareStatement(deleteReq);
              deletePs.executeUpdate();
              System.out.println("Product removes from the cart!");
@@ -118,7 +118,7 @@ return panier;
             
                 int quantite=panier.getQuantite();
                 if(quantite>1){
-                    String updateReq="UPDATE panier SET quantite= "+ (quantite-1) +", total= "+((quantite-1)*panier.getProduit().getPrix()) +" WHERE id_panier=" +panier.getId_panier() ;
+                    String updateReq="UPDATE panier SET quantite= "+ (quantite-1) +", total= "+((quantite-1)*panier.getProduit().getPrix()) +" WHERE id_=" +panier.getId_panier() ;
                     PreparedStatement UpdatePs=mc.prepareStatement(updateReq);
                     UpdatePs.executeUpdate();
                     System.out.println("Product Quantite decremented in the cart");
@@ -141,7 +141,7 @@ public void incrementQuantite(Panier panier)
       try{
                 int quantite=panier.getQuantite();
                 if(quantite>0){
-                    String updateReq="UPDATE panier SET quantite= "+ (quantite+1) +", total= "+((quantite+1)*panier.getProduit().getPrix()) +" WHERE id_panier = " +panier.getId_panier() ;
+                    String updateReq="UPDATE panier SET quantite= "+ (quantite+1) +", total= "+((quantite+1)*panier.getProduit().getPrix()) +" WHERE id = " +panier.getId_panier() ;
                     PreparedStatement UpdatePs=mc.prepareStatement(updateReq);
                     UpdatePs.executeUpdate();
                     System.out.println("Product Quantite incremented in the cart"); 
@@ -157,11 +157,11 @@ public void incrementQuantite(Panier panier)
         try {
              Statement st=mc.createStatement();
 
-            String req = "SELECT  p.id_produit,p.quantite, pr.prix, pr.nom "
+            String req = "SELECT  p.produit_id,p.quantite, pr.prix, pr.nom "
                     + "FROM panier p "
-                    + "JOIN user c ON p.id_user = c.id_user "
-                    + "JOIN produits pr ON p.id_produit = pr.id "
-                    + "WHERE p.id_user = '" + id_user + "' ";
+                    + "JOIN user c ON p.user_id = c.id "
+                    + "JOIN produits pr ON p.id = pr.id "
+                    + "WHERE p.user_id = '" + id_user + "' ";
 
             ResultSet result = st.executeQuery(req);
 

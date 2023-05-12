@@ -18,12 +18,12 @@ public class Produit {
     private String nom;
     private String genre;
     private float prix;
-    private byte[] img;
+    private String img;
 
     public Produit() {
     }
 
-    public Produit(int Id, String nom, String genre, float prix, byte[] img) {
+    public Produit(int Id, String nom, String genre, float prix, String img) {
         this.Id = Id;
         this.nom = nom;
         this.genre = genre;
@@ -32,18 +32,18 @@ public class Produit {
         
     }
 
-    public Produit(String nom, String genre, float prix, byte[] img) {
+    public Produit(String nom, String genre, float prix,String img) {
         this.nom = nom;
         this.genre = genre;
         this.prix = prix;
         this.img = img;
     }
 
-    public byte[] getImg() {
+    public String getImg() {
         return img;
     }
 
-    public void setImg(byte[] img) {
+    public void setImg(String img) {
         this.img = img;
     }
 

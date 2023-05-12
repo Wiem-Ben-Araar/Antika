@@ -111,7 +111,6 @@ public class FXMLBlogDetailController implements Initializable {
 private void setChosenBlog(Blog blog){
     titre.setText(blog.getTitre());
     artiste.setText(blog.getArtiste().getNom());
-    date.setText(""+blog.getDate_publication());
     etiquette.setText(blog.getEtiquette());
 }    
 

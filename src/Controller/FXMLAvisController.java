@@ -4,6 +4,7 @@ import static Controller.FXMLCreateController.p;
 import Utilities.MaConnexion;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -21,7 +22,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.controlsfx.control.Rating;
-
+import java.time.LocalDate;
 /**
  * FXML Controller class
  *
@@ -46,12 +47,16 @@ public class FXMLAvisController implements Initializable {
 
    @FXML
 private void btn_envoyer(ActionEvent event) throws SQLException {  
+    LocalDate date= LocalDate.now();
     MaConnexion cnx=new MaConnexion();
-    String requete="insert into avis (commentaire,note)values(?,?)";
+    String requete="insert into avis ( user_id,commentaire,note,created_at)values(?,?,?,?)";
 
     pst=cnx.cnx.prepareStatement(requete);
-    pst.setString(1,tf_commentaire.getText());
-    pst.setInt(2,(int)tf_note.getRating());
+    pst.setInt(1,1);
+    pst.setString(2,tf_commentaire.getText());
+    pst.setInt(3,(int)tf_note.getRating());
+    pst.setDate(4,java.sql.Date.valueOf(date));
+
 
     if (tf_commentaire.getText().toLowerCase().contains("fuck") || tf_commentaire.getText().toLowerCase().contains("shit")  || tf_commentaire.getText().toLowerCase().contains("omek")) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
